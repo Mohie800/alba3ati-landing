@@ -1639,7 +1639,7 @@ function FooterSection() {
             {[
               { label: "سياسة الخصوصية", href: "/privacy" },
               { label: "إرشادات المجتمع", href: "/community" },
-              { label: "تواصل معنا", href: "mailto:contact@alba3ati.com" },
+              { label: "تواصل معنا", href: "/contact" },
             ].map((link, i) => (
                 <a
                   key={i}
