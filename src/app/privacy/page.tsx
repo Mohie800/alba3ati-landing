@@ -55,7 +55,7 @@ const sections = [
     title: "٥. حقوقك",
     items: [
       "يمكنك طلب نسخة من بياناتك الشخصية في أي وقت.",
-      "يمكنك طلب حذف حسابك وجميع البيانات المرتبطة به.",
+      "يمكنك طلب حذف حسابك وجميع البيانات المرتبطة به من خلال صفحة حذف البيانات.",
       "يمكنك تعديل معلومات حسابك من خلال إعدادات التطبيق.",
       "يمكنك إلغاء الاشتراك في الإشعارات التسويقية في أي وقت.",
     ],
@@ -311,6 +311,13 @@ export default function PrivacyPage() {
             style={{ color: "var(--sand)", opacity: 0.5 }}
           >
             إرشادات المجتمع
+          </Link>
+          <Link
+            href="/delete-data"
+            className="text-sm hover:opacity-100 transition-opacity"
+            style={{ color: "var(--sand)", opacity: 0.5 }}
+          >
+            حذف البيانات
           </Link>
         </div>
         <p className="text-xs" style={{ color: "var(--sand)", opacity: 0.3 }}>
