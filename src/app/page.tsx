@@ -1637,6 +1637,7 @@ function FooterSection() {
           {/* Links */}
           <div className="flex gap-8 mb-8">
             {[
+              { label: "كيف تلعب؟", href: "/how-to-play" },
               { label: "سياسة الخصوصية", href: "/privacy" },
               { label: "إرشادات المجتمع", href: "/community" },
               { label: "تواصل معنا", href: "/contact" },
