@@ -18,6 +18,7 @@
   --role-damazeen: #e94f37;
   --role-sitalwada3: #8e44ad;
   --role-abujanzeer: #f1c40f;
+  --role-ballah: #d35400;
 
   /* Fonts */
   --font-cairo: var(--font-cairo);
@@ -39,6 +40,7 @@
   --color-role-damazeen: var(--role-damazeen);
   --color-role-sitalwada3: var(--role-sitalwada3);
   --color-role-abujanzeer: var(--role-abujanzeer);
+  --color-role-ballah: var(--role-ballah);
 }
 
 /* * {
