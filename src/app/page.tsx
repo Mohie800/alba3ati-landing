@@ -299,7 +299,7 @@ function MandalaPattern({ size = 500 }: { size?: number }) {
     { r: size * 0.38, segments: 12, color: "rgba(199,91,57,0.15)" },
     { r: size * 0.3, segments: 8, color: "rgba(232,213,183,0.1)" },
     { r: size * 0.22, segments: 16, color: "rgba(199,91,57,0.12)" },
-    { r: size * 0.14, segments: 6, color: "rgba(232,213,183,0.15)" },
+    { r: size * 0.14, segments: 8, color: "rgba(232,213,183,0.15)" },
   ];
   const cx = size / 2;
   const cy = size / 2;
@@ -333,7 +333,8 @@ function MandalaPattern({ size = 500 }: { size?: number }) {
             />
             {/* Connecting lines to create star pattern */}
             {points.map((point, pi) => {
-              const nextIdx = (pi + Math.floor(ring.segments / 3)) % ring.segments;
+              const nextIdx =
+                (pi + Math.floor(ring.segments / 3)) % ring.segments;
               return (
                 <line
                   key={pi}
@@ -502,7 +503,13 @@ function FloatingAccents() {
 
 /* ---- HERO ---- */
 /* ---- COMING SOON MODAL ---- */
-function ComingSoonModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+function ComingSoonModal({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
   return (
     <AnimatePresence>
       {open && (
@@ -521,9 +528,11 @@ function ComingSoonModal({ open, onClose }: { open: boolean; onClose: () => void
           <motion.div
             className="relative w-full max-w-sm rounded-2xl overflow-hidden"
             style={{
-              background: "linear-gradient(145deg, var(--indigo), var(--indigo-dark, #1a1040))",
+              background:
+                "linear-gradient(145deg, var(--indigo), var(--indigo-dark, #1a1040))",
               border: "2px solid var(--terracotta)",
-              boxShadow: "0 25px 60px rgba(0,0,0,0.5), 0 0 40px rgba(199,91,57,0.15)",
+              boxShadow:
+                "0 25px 60px rgba(0,0,0,0.5), 0 0 40px rgba(199,91,57,0.15)",
             }}
             initial={{ scale: 0.8, y: 30, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
@@ -535,7 +544,8 @@ function ComingSoonModal({ open, onClose }: { open: boolean; onClose: () => void
             <div
               className="h-1.5 w-full"
               style={{
-                background: "linear-gradient(90deg, var(--terracotta), var(--sand), var(--terracotta))",
+                background:
+                  "linear-gradient(90deg, var(--terracotta), var(--sand), var(--terracotta))",
               }}
             />
 
@@ -615,7 +625,7 @@ function HeroSection() {
       <GeometricBorderSVG />
 
       {/* Background star pattern */}
-      <div className="absolute inset-0 pattern-stars" />
+      {/* <div className="absolute inset-0 pattern-stars" /> */}
 
       {/* Mandala */}
       <motion.div
@@ -678,7 +688,12 @@ function HeroSection() {
           className="flex justify-center mb-4"
           initial={{ scale: 0, y: 40 }}
           animate={{ scale: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8, type: "spring", bounce: 0.3 }}
+          transition={{
+            delay: 0.3,
+            duration: 0.8,
+            type: "spring",
+            bounce: 0.3,
+          }}
         >
           <Image
             src="/icon1.png"
@@ -691,7 +706,7 @@ function HeroSection() {
         </motion.div>
 
         {/* Title */}
-        <motion.h1
+        {/* <motion.h1
           className="text-7xl sm:text-8xl md:text-9xl font-bold mb-6 tracking-tight"
           style={{
             fontFamily: "var(--font-reem-kufi)",
@@ -707,7 +722,7 @@ function HeroSection() {
           }}
         >
           البعاتي
-        </motion.h1>
+        </motion.h1> */}
 
         {/* Geometric line decoration */}
         <motion.div
@@ -837,7 +852,14 @@ function HeroSection() {
             <polygon points="1400,120 1400,80 1440,80 1440,120" />
           </g>
           {/* Baseline */}
-          <rect x="0" y="115" width="1440" height="5" fill="var(--terracotta)" opacity="0.15" />
+          <rect
+            x="0"
+            y="115"
+            width="1440"
+            height="5"
+            fill="var(--terracotta)"
+            opacity="0.15"
+          />
         </svg>
       </div>
     </section>
@@ -928,9 +950,7 @@ function AboutSection() {
                 key={i}
                 className="flex flex-col items-center text-center"
                 initial={{ scale: 0, rotate: -30 }}
-                animate={
-                  isInView ? { scale: 1, rotate: 0 } : {}
-                }
+                animate={isInView ? { scale: 1, rotate: 0 } : {}}
                 transition={{
                   delay: 0.3 + i * 0.15,
                   duration: 0.5,
@@ -990,7 +1010,10 @@ function RolesSection() {
 
   return (
     <>
-      <div className="zigzag-divider-terracotta" style={{ background: "var(--terracotta)" }}>
+      <div
+        className="zigzag-divider-terracotta"
+        style={{ background: "var(--terracotta)" }}
+      >
         <div
           style={{
             width: "100%",
@@ -1049,11 +1072,26 @@ function RolesSection() {
               شخصيات اللعبة
             </h2>
             <div className="flex items-center justify-center gap-2 mb-4">
-              <div className="h-[2px] w-12" style={{ background: "var(--terracotta)" }} />
-              <div className="w-2 h-2 rotate-45" style={{ background: "var(--terracotta)" }} />
-              <div className="h-[2px] w-8" style={{ background: "var(--terracotta)" }} />
-              <div className="w-2 h-2 rotate-45" style={{ background: "var(--terracotta)" }} />
-              <div className="h-[2px] w-12" style={{ background: "var(--terracotta)" }} />
+              <div
+                className="h-[2px] w-12"
+                style={{ background: "var(--terracotta)" }}
+              />
+              <div
+                className="w-2 h-2 rotate-45"
+                style={{ background: "var(--terracotta)" }}
+              />
+              <div
+                className="h-[2px] w-8"
+                style={{ background: "var(--terracotta)" }}
+              />
+              <div
+                className="w-2 h-2 rotate-45"
+                style={{ background: "var(--terracotta)" }}
+              />
+              <div
+                className="h-[2px] w-12"
+                style={{ background: "var(--terracotta)" }}
+              />
             </div>
             <p
               className="text-base"
@@ -1075,11 +1113,7 @@ function RolesSection() {
                   rotate: angleOffsets[i],
                   scale: 0.6,
                 }}
-                animate={
-                  isInView
-                    ? { opacity: 1, rotate: 0, scale: 1 }
-                    : {}
-                }
+                animate={isInView ? { opacity: 1, rotate: 0, scale: 1 } : {}}
                 transition={{
                   delay: 0.2 + i * 0.12,
                   duration: 0.6,
@@ -1234,11 +1268,26 @@ function HowToPlaySection() {
               كيف تلعب؟
             </h2>
             <div className="flex items-center justify-center gap-2">
-              <div className="h-[2px] w-12" style={{ background: "var(--terracotta)" }} />
-              <div className="w-2 h-2 rotate-45" style={{ background: "var(--terracotta)" }} />
-              <div className="h-[2px] w-8" style={{ background: "var(--terracotta)" }} />
-              <div className="w-2 h-2 rotate-45" style={{ background: "var(--terracotta)" }} />
-              <div className="h-[2px] w-12" style={{ background: "var(--terracotta)" }} />
+              <div
+                className="h-[2px] w-12"
+                style={{ background: "var(--terracotta)" }}
+              />
+              <div
+                className="w-2 h-2 rotate-45"
+                style={{ background: "var(--terracotta)" }}
+              />
+              <div
+                className="h-[2px] w-8"
+                style={{ background: "var(--terracotta)" }}
+              />
+              <div
+                className="w-2 h-2 rotate-45"
+                style={{ background: "var(--terracotta)" }}
+              />
+              <div
+                className="h-[2px] w-12"
+                style={{ background: "var(--terracotta)" }}
+              />
             </div>
           </motion.div>
 
@@ -1251,11 +1300,7 @@ function HowToPlaySection() {
                   key={step.step}
                   className="relative w-full max-w-lg"
                   initial={{ y: 60, opacity: 0, scale: 0.9 }}
-                  animate={
-                    isInView
-                      ? { y: 0, opacity: 1, scale: 1 }
-                      : {}
-                  }
+                  animate={isInView ? { y: 0, opacity: 1, scale: 1 } : {}}
                   transition={{
                     delay: 0.15 + i * 0.12,
                     duration: 0.5,
@@ -1268,12 +1313,11 @@ function HowToPlaySection() {
                     className="relative p-6 mb-0"
                     style={{
                       background:
+                        i % 2 === 0 ? "var(--indigo)" : "var(--terracotta)",
+                      clipPath:
                         i % 2 === 0
-                          ? "var(--indigo)"
-                          : "var(--terracotta)",
-                      clipPath: i % 2 === 0
-                        ? "polygon(0% 0%, 100% 0%, 96% 100%, 4% 100%)"
-                        : "polygon(4% 0%, 96% 0%, 100% 100%, 0% 100%)",
+                          ? "polygon(0% 0%, 100% 0%, 96% 100%, 4% 100%)"
+                          : "polygon(4% 0%, 96% 0%, 100% 100%, 0% 100%)",
                     }}
                   >
                     <div className="flex items-center gap-4">
@@ -1282,9 +1326,7 @@ function HowToPlaySection() {
                         className="flex-shrink-0 w-12 h-12 flex items-center justify-center rotate-45"
                         style={{
                           background:
-                            i % 2 === 0
-                              ? "var(--terracotta)"
-                              : "var(--sand)",
+                            i % 2 === 0 ? "var(--terracotta)" : "var(--sand)",
                         }}
                       >
                         <span
@@ -1407,11 +1449,26 @@ function FeaturesSection() {
               مميزات اللعبة
             </h2>
             <div className="flex items-center justify-center gap-2">
-              <div className="h-[2px] w-12" style={{ background: "var(--terracotta)" }} />
-              <div className="w-2 h-2 rotate-45" style={{ background: "var(--terracotta)" }} />
-              <div className="h-[2px] w-8" style={{ background: "var(--terracotta)" }} />
-              <div className="w-2 h-2 rotate-45" style={{ background: "var(--terracotta)" }} />
-              <div className="h-[2px] w-12" style={{ background: "var(--terracotta)" }} />
+              <div
+                className="h-[2px] w-12"
+                style={{ background: "var(--terracotta)" }}
+              />
+              <div
+                className="w-2 h-2 rotate-45"
+                style={{ background: "var(--terracotta)" }}
+              />
+              <div
+                className="h-[2px] w-8"
+                style={{ background: "var(--terracotta)" }}
+              />
+              <div
+                className="w-2 h-2 rotate-45"
+                style={{ background: "var(--terracotta)" }}
+              />
+              <div
+                className="h-[2px] w-12"
+                style={{ background: "var(--terracotta)" }}
+              />
             </div>
           </motion.div>
 
@@ -1683,8 +1740,7 @@ function FooterSection() {
   } | null>(null);
 
   useEffect(() => {
-    const apiUrl =
-      process.env.NEXT_PUBLIC_API_URL || "http://localhost:3009";
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3009";
     fetch(`${apiUrl}/api/app/community-links`)
       .then((r) => r.json())
       .then(setCommunityLinks)
@@ -1725,7 +1781,7 @@ function FooterSection() {
   ];
 
   const activePlatforms = platforms.filter(
-    (p) => communityLinks?.[p.key]?.enabled && communityLinks[p.key]?.url
+    (p) => communityLinks?.[p.key]?.enabled && communityLinks[p.key]?.url,
   );
   const showCommunity = communityLinks?.enabled && activePlatforms.length > 0;
 
@@ -1840,22 +1896,18 @@ function FooterSection() {
               { label: "إرشادات المجتمع", href: "/community" },
               { label: "تواصل معنا", href: "/contact" },
             ].map((link, i) => (
-                <a
-                  key={i}
-                  href={link.href}
-                  className="text-sm transition-colors duration-300 hover:opacity-100"
-                  style={{ color: "var(--sand)", opacity: 0.5 }}
-                >
-                  {link.label}
-                </a>
-              )
-            )}
+              <a
+                key={i}
+                href={link.href}
+                className="text-sm transition-colors duration-300 hover:opacity-100"
+                style={{ color: "var(--sand)", opacity: 0.5 }}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
 
-          <p
-            className="text-xs"
-            style={{ color: "var(--sand)", opacity: 0.3 }}
-          >
+          <p className="text-xs" style={{ color: "var(--sand)", opacity: 0.3 }}>
             &copy; {new Date().getFullYear()} البعاتي. جميع الحقوق محفوظة.
           </p>
         </div>
