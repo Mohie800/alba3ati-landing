@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.alba3ati.app",
+      "sha256_cert_fingerprints": [
+        "71:E5:E3:5C:34:E1:7A:B4:CE:EF:12:D0:17:4B:16:5D:97:C2:32:E7:7A:81:93:DD:08:21:3B:21:5E:6B:0A:2D"
+      ]
+    }
+  }
+]

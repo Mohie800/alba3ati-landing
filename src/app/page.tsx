@@ -8,6 +8,7 @@ import {
   useInView,
   AnimatePresence,
 } from "framer-motion";
+import Image from "next/image";
 import { roles, features, gameSteps, aboutHighlights } from "@/lib/data";
 
 /* ==========================================================================
@@ -500,7 +501,100 @@ function FloatingAccents() {
    ========================================================================== */
 
 /* ---- HERO ---- */
+/* ---- COMING SOON MODAL ---- */
+function ComingSoonModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="fixed inset-0 z-[9999] flex items-center justify-center px-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onClick={onClose}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+
+          {/* Modal */}
+          <motion.div
+            className="relative w-full max-w-sm rounded-2xl overflow-hidden"
+            style={{
+              background: "linear-gradient(145deg, var(--indigo), var(--indigo-dark, #1a1040))",
+              border: "2px solid var(--terracotta)",
+              boxShadow: "0 25px 60px rgba(0,0,0,0.5), 0 0 40px rgba(199,91,57,0.15)",
+            }}
+            initial={{ scale: 0.8, y: 30, opacity: 0 }}
+            animate={{ scale: 1, y: 0, opacity: 1 }}
+            exit={{ scale: 0.8, y: 30, opacity: 0 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Top decorative bar */}
+            <div
+              className="h-1.5 w-full"
+              style={{
+                background: "linear-gradient(90deg, var(--terracotta), var(--sand), var(--terracotta))",
+              }}
+            />
+
+            <div className="p-8 text-center" dir="rtl">
+              {/* Icon */}
+              <motion.div
+                className="mx-auto mb-5 w-16 h-16 rounded-2xl flex items-center justify-center"
+                style={{ background: "rgba(199,91,57,0.15)" }}
+                initial={{ rotate: -10 }}
+                animate={{ rotate: 0 }}
+                transition={{ delay: 0.15, type: "spring" }}
+              >
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+                    fill="var(--sand)"
+                  />
+                </svg>
+              </motion.div>
+
+              {/* Text */}
+              <h3
+                className="text-2xl font-bold mb-3"
+                style={{
+                  fontFamily: "var(--font-reem-kufi)",
+                  color: "var(--sand-light)",
+                }}
+              >
+                قريبًا على App Store
+              </h3>
+              <p
+                className="text-base mb-8 leading-relaxed"
+                style={{ color: "var(--sand)", opacity: 0.7 }}
+              >
+                نشتغل على نسخة iOS — تابعنا عشان تعرف أول ما تنزل!
+              </p>
+
+              {/* Close button */}
+              <button
+                onClick={onClose}
+                className="geo-btn px-8 py-3 text-base font-bold"
+                style={{
+                  fontFamily: "var(--font-reem-kufi)",
+                  background: "var(--terracotta)",
+                  color: "var(--sand-light)",
+                }}
+              >
+                تمام
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 function HeroSection() {
+  const [iosModal, setIosModal] = useState(false);
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -579,14 +673,21 @@ function HeroSection() {
         className="relative z-10 text-center px-6 max-w-4xl"
         style={{ y: textY, opacity }}
       >
-        {/* Decorative top element */}
+        {/* Mascot */}
         <motion.div
-          className="flex justify-center mb-6"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.5, duration: 0.6, type: "spring" }}
+          className="flex justify-center mb-4"
+          initial={{ scale: 0, y: 40 }}
+          animate={{ scale: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.8, type: "spring", bounce: 0.3 }}
         >
-          <EightPointStar size={48} color="var(--terracotta)" />
+          <Image
+            src="/icon1.png"
+            alt="البعاتي"
+            width={180}
+            height={180}
+            className="drop-shadow-[0_0_40px_rgba(199,91,57,0.4)]"
+            priority
+          />
         </motion.div>
 
         {/* Title */}
@@ -668,6 +769,7 @@ function HeroSection() {
           transition={{ delay: 1.4, duration: 0.6 }}
         >
           <button
+            onClick={() => setIosModal(true)}
             className="geo-btn px-10 py-4 text-lg font-bold"
             style={{
               fontFamily: "var(--font-reem-kufi)",
@@ -677,8 +779,11 @@ function HeroSection() {
           >
             حمّل على iOS
           </button>
-          <button
-            className="geo-btn px-10 py-4 text-lg font-bold"
+          <a
+            href="https://play.google.com/store/apps/details?id=com.alba3ati.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="geo-btn px-10 py-4 text-lg font-bold inline-block text-center no-underline"
             style={{
               fontFamily: "var(--font-reem-kufi)",
               background: "rgba(232,213,183,0.1)",
@@ -689,8 +794,9 @@ function HeroSection() {
             }}
           >
             حمّل على Android
-          </button>
+          </a>
         </motion.div>
+        <ComingSoonModal open={iosModal} onClose={() => setIosModal(false)} />
       </motion.div>
 
       {/* Geometric village silhouette */}
@@ -1382,6 +1488,7 @@ function FeaturesSection() {
 
 /* ---- DOWNLOAD CTA ---- */
 function DownloadSection() {
+  const [iosModal, setIosModal] = useState(false);
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -1465,7 +1572,13 @@ function DownloadSection() {
             transition={{ duration: 0.5, type: "spring" }}
             className="flex justify-center mb-6"
           >
-            <EightPointStar size={56} color="var(--sand)" />
+            <Image
+              src="/icon1.png"
+              alt="البعاتي"
+              width={120}
+              height={120}
+              className="drop-shadow-[0_0_30px_rgba(232,213,183,0.3)]"
+            />
           </motion.div>
 
           <motion.h2
@@ -1526,6 +1639,7 @@ function DownloadSection() {
             transition={{ delay: 0.5, duration: 0.6 }}
           >
             <button
+              onClick={() => setIosModal(true)}
               className="geo-btn px-12 py-5 text-xl font-bold"
               style={{
                 fontFamily: "var(--font-reem-kufi)",
@@ -1535,8 +1649,11 @@ function DownloadSection() {
             >
               App Store
             </button>
-            <button
-              className="geo-btn px-12 py-5 text-xl font-bold"
+            <a
+              href="https://play.google.com/store/apps/details?id=com.alba3ati.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="geo-btn px-12 py-5 text-xl font-bold inline-block text-center no-underline"
               style={{
                 fontFamily: "var(--font-reem-kufi)",
                 background: "transparent",
@@ -1547,8 +1664,9 @@ function DownloadSection() {
               }}
             >
               Google Play
-            </button>
+            </a>
           </motion.div>
+          <ComingSoonModal open={iosModal} onClose={() => setIosModal(false)} />
         </div>
       </section>
     </>
@@ -1557,6 +1675,60 @@ function DownloadSection() {
 
 /* ---- FOOTER ---- */
 function FooterSection() {
+  const [communityLinks, setCommunityLinks] = useState<{
+    enabled?: boolean;
+    whatsapp?: { url: string; enabled: boolean };
+    telegram?: { url: string; enabled: boolean };
+    discord?: { url: string; enabled: boolean };
+  } | null>(null);
+
+  useEffect(() => {
+    const apiUrl =
+      process.env.NEXT_PUBLIC_API_URL || "http://localhost:3009";
+    fetch(`${apiUrl}/api/app/community-links`)
+      .then((r) => r.json())
+      .then(setCommunityLinks)
+      .catch(() => {});
+  }, []);
+
+  const platforms = [
+    {
+      key: "whatsapp" as const,
+      color: "#25D366",
+      hoverColor: "#1da851",
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+        </svg>
+      ),
+    },
+    {
+      key: "telegram" as const,
+      color: "#0088cc",
+      hoverColor: "#006da3",
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
+          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+        </svg>
+      ),
+    },
+    {
+      key: "discord" as const,
+      color: "#5865F2",
+      hoverColor: "#4752c4",
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
+          <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z" />
+        </svg>
+      ),
+    },
+  ];
+
+  const activePlatforms = platforms.filter(
+    (p) => communityLinks?.[p.key]?.enabled && communityLinks[p.key]?.url
+  );
+  const showCommunity = communityLinks?.enabled && activePlatforms.length > 0;
+
   return (
     <footer
       className="relative py-12 overflow-hidden"
@@ -1598,19 +1770,15 @@ function FooterSection() {
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 pt-6">
         <div className="flex flex-col items-center text-center">
-          {/* Logo and star */}
-          <div className="flex items-center gap-3 mb-4">
-            <EightPointStar size={24} color="var(--terracotta)" />
-            <span
-              className="text-2xl font-bold"
-              style={{
-                fontFamily: "var(--font-reem-kufi)",
-                color: "var(--sand)",
-              }}
-            >
-              البعاتي
-            </span>
-            <EightPointStar size={24} color="var(--terracotta)" />
+          {/* Logo */}
+          <div className="mb-2">
+            <Image
+              src="/icon1.png"
+              alt="البعاتي"
+              width={80}
+              height={80}
+              className="opacity-80"
+            />
           </div>
 
           <p
@@ -1619,6 +1787,36 @@ function FooterSection() {
           >
             لعبة الذكاء والخداع السودانية
           </p>
+
+          {/* Community Links */}
+          {showCommunity && (
+            <div className="mb-6">
+              <p
+                className="text-sm mb-3"
+                style={{
+                  fontFamily: "var(--font-reem-kufi)",
+                  color: "var(--sand)",
+                  opacity: 0.7,
+                }}
+              >
+                انضم لمجتمع اللاعبين
+              </p>
+              <div className="flex items-center justify-center gap-4">
+                {activePlatforms.map((p) => (
+                  <a
+                    key={p.key}
+                    href={communityLinks![p.key]!.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full flex items-center justify-center text-white transition-transform duration-200 hover:scale-110"
+                    style={{ background: p.color }}
+                  >
+                    {p.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Geometric divider */}
           <div className="flex items-center gap-1.5 mb-6">

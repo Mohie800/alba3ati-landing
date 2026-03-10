@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const fadeIn = {
@@ -283,15 +284,9 @@ export default function HowToPlayPage() {
           >
             ← العودة للرئيسية
           </Link>
-          <span
-            className="text-xl font-black"
-            style={{
-              fontFamily: "var(--font-reem-kufi)",
-              color: "var(--sand)",
-            }}
-          >
-            البعاتي
-          </span>
+          <Link href="/">
+            <Image src="/icon1.png" alt="البعاتي" width={40} height={40} />
+          </Link>
         </div>
       </header>
 
