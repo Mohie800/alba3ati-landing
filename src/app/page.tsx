@@ -501,8 +501,9 @@ function FloatingAccents() {
 /* ==========================================================================
    SHARED CONSTANTS
    ========================================================================== */
-const GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=com.alba3ati.app";
-const LAUNCH_TARGET = new Date("2026-03-15T22:00:00+02:00").getTime();
+const GOOGLE_PLAY_URL =
+  "https://play.google.com/store/apps/details?id=com.alba3ati.app";
+const LAUNCH_TARGET = new Date("2026-03-16T22:00:00+02:00").getTime();
 const isLaunched = () => Date.now() >= LAUNCH_TARGET;
 
 /* ==========================================================================
@@ -916,7 +917,10 @@ function HeroSection() {
           </button>
         </motion.div>
         <ComingSoonModal open={iosModal} onClose={() => setIosModal(false)} />
-        <GooglePlayComingSoonModal open={gpModal} onClose={() => setGpModal(false)} />
+        <GooglePlayComingSoonModal
+          open={gpModal}
+          onClose={() => setGpModal(false)}
+        />
       </motion.div>
 
       {/* Geometric village silhouette */}
@@ -1687,7 +1691,11 @@ function HowToPlaySection() {
 
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <Icon name={step.icon} size={24} color="var(--sand)" />
+                          <Icon
+                            name={step.icon}
+                            size={24}
+                            color="var(--sand)"
+                          />
                           <h3
                             className="text-lg font-bold"
                             style={{
@@ -1858,7 +1866,9 @@ function FeaturesSection() {
                       border: "2px solid rgba(199,91,57,0.3)",
                     }}
                   >
-                    <span className="-rotate-45"><Icon name={feature.icon} size={24} color="var(--sand)" /></span>
+                    <span className="-rotate-45">
+                      <Icon name={feature.icon} size={24} color="var(--sand)" />
+                    </span>
                   </div>
                   <h3
                     className="text-lg font-bold"
@@ -2073,7 +2083,10 @@ function DownloadSection() {
             </button>
           </motion.div>
           <ComingSoonModal open={iosModal} onClose={() => setIosModal(false)} />
-          <GooglePlayComingSoonModal open={gpModal} onClose={() => setGpModal(false)} />
+          <GooglePlayComingSoonModal
+            open={gpModal}
+            onClose={() => setGpModal(false)}
+          />
         </div>
       </section>
     </>
