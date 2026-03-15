@@ -3,6 +3,32 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Icon } from "@/components/icons";
+import {
+  Sword,
+  Shield,
+  Swords,
+  Sparkles,
+  Link as LinkIcon,
+  DoorOpen,
+  Moon,
+  Sun,
+  Sunrise,
+  Vote,
+  Trophy,
+  Brain,
+  EyeOff,
+  Handshake,
+  BarChart3,
+  Target,
+  Lightbulb,
+  Users,
+  Mic,
+  Timer,
+  Home,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -17,12 +43,21 @@ const fadeIn = {
   }),
 };
 
-const roles = [
+const roles: {
+  name: string;
+  team: string;
+  teamColor: string;
+  icon: LucideIcon;
+  description: string;
+  ability: string;
+  goal: string;
+  tips: string[];
+}[] = [
   {
     name: "البعاتي",
     team: "البعاتي",
     teamColor: "var(--role-ba3ati)",
-    icon: "🗡️",
+    icon: Sword,
     description:
       "القاتل الذي يتخفى بين الأهالي. كل ليلة يختار ضحية للقضاء عليها.",
     ability: "اختيار لاعب للقضاء عليه كل ليلة",
@@ -38,7 +73,7 @@ const roles = [
     name: "العمدة",
     team: "الأهالي",
     teamColor: "var(--role-al3omda)",
-    icon: "🛡️",
+    icon: Shield,
     description: "حامي القرية. كل ليلة يختار لاعباً لحمايته من البعاتي.",
     ability: "حماية لاعب واحد كل ليلة من القتل",
     goal: "حماية الأبرياء ومساعدة القرية في كشف البعاتي",
@@ -52,7 +87,7 @@ const roles = [
     name: "شيخ الدمازين",
     team: "الأهالي",
     teamColor: "var(--role-damazeen)",
-    icon: "⚔️",
+    icon: Swords,
     description:
       "المحارب الشجاع. يمكنه إما القضاء على مشبوه أو حماية الجميع لليلة واحدة.",
     ability:
@@ -69,7 +104,7 @@ const roles = [
     name: "ست الودع",
     team: "الأهالي",
     teamColor: "var(--role-sitalwada3)",
-    icon: "🔮",
+    icon: Sparkles,
     description: "العرّافة. كل ليلة تكشف الدور السري للاعب واحد.",
     ability: "كشف دور لاعب واحد كل ليلة",
     goal: "جمع المعلومات ومساعدة القرية في تحديد البعاتي",
@@ -84,7 +119,7 @@ const roles = [
     name: "بله اب سيف",
     team: "الأهالي",
     teamColor: "var(--role-ballah)",
-    icon: "⚔️",
+    icon: Swords,
     description:
       "المحارب الصامت. يملك سيفاً يستخدمه مرة واحدة طوال اللعبة للقضاء على لاعب بضربة لا يمكن صدها.",
     ability: "قتل لاعب واحد بضربة سيف لا يمكن صدها — تُستخدم مرة واحدة فقط طوال اللعبة",
@@ -100,7 +135,7 @@ const roles = [
     name: "ابو جنزير",
     team: "ابو جنزير",
     teamColor: "var(--role-abujanzeer)",
-    icon: "⛓️",
+    icon: LinkIcon,
     description:
       "الذئب الوحيد. يلعب لوحده ضد الجميع. يفوز عندما يكون آخر من يبقى.",
     ability: "اختيار لاعب للقضاء عليه كل ليلة (مستقل عن البعاتي)",
@@ -114,10 +149,16 @@ const roles = [
   },
 ];
 
-const gamePhases = [
+const gamePhases: {
+  phase: string;
+  icon: LucideIcon;
+  color: string;
+  description: string;
+  details: string[];
+}[] = [
   {
     phase: "إنشاء الغرفة والانضمام",
-    icon: "🚪",
+    icon: DoorOpen,
     color: "var(--role-al3omda)",
     description:
       "يقوم أحد اللاعبين بإنشاء غرفة (خاصة بكود أو عامة) ثم ينضم باقي اللاعبين.",
@@ -129,7 +170,7 @@ const gamePhases = [
   },
   {
     phase: "توزيع الأدوار",
-    icon: "🎭",
+    icon: Sparkles,
     color: "var(--role-sitalwada3)",
     description: "يتم توزيع الأدوار سرياً على جميع اللاعبين بشكل عشوائي.",
     details: [
@@ -140,7 +181,7 @@ const gamePhases = [
   },
   {
     phase: "مرحلة الليل",
-    icon: "🌙",
+    icon: Moon,
     color: "var(--role-ba3ati)",
     description: "القرية تنام وكل صاحب دور خاص ينفذ قدرته سراً.",
     details: [
@@ -155,7 +196,7 @@ const gamePhases = [
   },
   {
     phase: "نتائج الليل",
-    icon: "🌅",
+    icon: Sunrise,
     color: "var(--terracotta)",
     description: "القرية تستيقظ وتكتشف ما حدث أثناء الليل.",
     details: [
@@ -166,7 +207,7 @@ const gamePhases = [
   },
   {
     phase: "مرحلة النقاش",
-    icon: "☀️",
+    icon: Sun,
     color: "var(--role-al3omda)",
     description:
       "اللاعبون يتناقشون عبر المحادثة الصوتية المباشرة لتحديد المشتبه بهم.",
@@ -180,7 +221,7 @@ const gamePhases = [
   },
   {
     phase: "مرحلة التصويت",
-    icon: "🗳️",
+    icon: Vote,
     color: "var(--role-damazeen)",
     description: "القرية تصوت لطرد اللاعب الأكثر اشتباهاً.",
     details: [
@@ -191,7 +232,7 @@ const gamePhases = [
   },
   {
     phase: "شروط الفوز",
-    icon: "🏆",
+    icon: Trophy,
     color: "var(--role-abujanzeer)",
     description:
       "اللعبة تستمر بتكرار الليل والنهار حتى يتحقق شرط فوز أحد الفرق.",
@@ -203,39 +244,39 @@ const gamePhases = [
   },
 ];
 
-const tips = [
+const tips: { icon: LucideIcon; title: string; description: string }[] = [
   {
-    icon: "🧠",
+    icon: Brain,
     title: "راقب وحلّل",
     description:
       "انتبه لسلوك اللاعبين وردود أفعالهم. من يتهم من؟ من يدافع عن من؟ هذه الأنماط تكشف الكثير.",
   },
   {
-    icon: "🤫",
+    icon: EyeOff,
     title: "لا تكشف أوراقك",
     description:
       "إذا كان لديك دور خاص، لا تكشف هويتك مبكراً. المعلومات قوة — استخدمها بحكمة.",
   },
   {
-    icon: "🎭",
+    icon: Sparkles,
     title: "أتقن التمثيل",
     description:
       "سواء كنت بعاتي أو أهالي، تعلم كيف تتحكم في لغة جسدك ونبرة صوتك أثناء النقاش.",
   },
   {
-    icon: "🤝",
+    icon: Handshake,
     title: "ابنِ تحالفات",
     description:
       "التعاون مع لاعبين تثق بهم يزيد فرصك في البقاء. لكن كن حذراً — قد يكون حليفك هو البعاتي!",
   },
   {
-    icon: "📊",
+    icon: BarChart3,
     title: "تتبع المعلومات",
     description:
       "حاول تذكر تصويتات اللاعبين ومواقفهم في كل جولة. الأنماط المتكررة تساعد في كشف الأدوار.",
   },
   {
-    icon: "🎯",
+    icon: Target,
     title: "اختر معاركك",
     description:
       "لا تتهم كل من يختلف معك. ركّز على الأدلة الحقيقية وقدّم حججاً مقنعة عند التصويت.",
@@ -459,19 +500,19 @@ export default function HowToPlayPage() {
               style={{ color: "rgba(255,255,255,0.8)" }}
             >
               <div className="flex items-center gap-2">
-                <span className="text-xl">👥</span>
+                <Users size={20} color="white" />
                 <span>٥ - ١٥ لاعب</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-xl">🎭</span>
+                <Sparkles size={20} color="white" />
                 <span>٦ أدوار مختلفة</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-xl">🎙️</span>
+                <Mic size={20} color="white" />
                 <span>محادثة صوتية مباشرة</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-xl">⏱️</span>
+                <Timer size={20} color="white" />
                 <span>١٠ - ٣٠ دقيقة</span>
               </div>
             </div>
@@ -560,10 +601,10 @@ export default function HowToPlayPage() {
               {/* Step number */}
               <div className="flex items-center gap-4 mb-4">
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
+                  className="w-12 h-12 rounded-xl flex items-center justify-center"
                   style={{ background: `${phase.color}20` }}
                 >
-                  {phase.icon}
+                  <phase.icon size={24} color={phase.color} />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
@@ -684,26 +725,26 @@ export default function HowToPlayPage() {
 
         {/* Teams overview */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-          {[
+          {([
             {
               team: "الأهالي",
               color: "var(--role-al3omda)",
-              icon: "🏘️",
+              icon: Home,
               desc: "هدفهم كشف البعاتي وحماية القرية",
             },
             {
               team: "البعاتي",
               color: "var(--role-ba3ati)",
-              icon: "🗡️",
+              icon: Sword,
               desc: "هدفهم القضاء على الأهالي دون انكشاف",
             },
             {
               team: "ابو جنزير",
               color: "var(--role-abujanzeer)",
-              icon: "⛓️",
+              icon: LinkIcon,
               desc: "يلعب وحده ويفوز بالبقاء الأخير",
             },
-          ].map((t, i) => (
+          ] as { team: string; color: string; icon: LucideIcon; desc: string }[]).map((t, i) => (
             <motion.div
               key={i}
               custom={i}
@@ -717,7 +758,9 @@ export default function HowToPlayPage() {
                 border: `1px solid ${t.color}30`,
               }}
             >
-              <span className="text-3xl block mb-2">{t.icon}</span>
+              <div className="flex justify-center mb-2">
+                <t.icon size={30} color={t.color} />
+              </div>
               <h3
                 className="font-bold text-lg mb-1"
                 style={{ color: t.color, fontFamily: "var(--font-reem-kufi)" }}
@@ -754,10 +797,10 @@ export default function HowToPlayPage() {
               >
                 <div className="flex items-center gap-4">
                   <div
-                    className="w-14 h-14 rounded-xl flex items-center justify-center text-3xl"
+                    className="w-14 h-14 rounded-xl flex items-center justify-center"
                     style={{ background: `${role.teamColor}25` }}
                   >
-                    {role.icon}
+                    <role.icon size={28} color={role.teamColor} />
                   </div>
                   <div>
                     <h3
@@ -800,7 +843,7 @@ export default function HowToPlayPage() {
                   }}
                 >
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-sm">⚡</span>
+                    <Zap size={14} color={role.teamColor} />
                     <span
                       className="font-bold text-sm"
                       style={{ color: role.teamColor }}
@@ -825,7 +868,7 @@ export default function HowToPlayPage() {
                   }}
                 >
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-sm">🎯</span>
+                    <Target size={14} color="var(--sand)" />
                     <span
                       className="font-bold text-sm"
                       style={{ color: "var(--sand)" }}
@@ -844,7 +887,7 @@ export default function HowToPlayPage() {
                 {/* Tips */}
                 <div>
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-sm">💡</span>
+                    <Lightbulb size={14} color="var(--sand)" />
                     <span
                       className="font-bold text-sm"
                       style={{ color: "var(--sand)" }}
@@ -961,7 +1004,9 @@ export default function HowToPlayPage() {
                   />
                 </svg>
               </div>
-              <span className="text-3xl block mb-3">{tip.icon}</span>
+              <div className="mb-3">
+                <tip.icon size={30} color="var(--terracotta)" />
+              </div>
               <h3
                 className="text-lg font-bold mb-2"
                 style={{
@@ -1026,7 +1071,8 @@ export default function HowToPlayPage() {
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 hover:scale-105"
                 style={{ background: "white", color: "var(--indigo)" }}
               >
-                App Store 🍎
+                <Icon name="apple" size={16} color="var(--indigo)" />
+                App Store
               </a>
               <a
                 href="https://play.google.com/store/apps/details?id=com.alba3ati.app"
@@ -1035,7 +1081,8 @@ export default function HowToPlayPage() {
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 hover:scale-105"
                 style={{ background: "white", color: "var(--indigo)" }}
               >
-                Google Play 🤖
+                <Icon name="googlePlay" size={16} color="var(--indigo)" />
+                Google Play
               </a>
             </div>
           </div>

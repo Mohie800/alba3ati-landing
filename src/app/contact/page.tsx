@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { Icon } from "@/components/icons";
 
 type FormState = "idle" | "sending" | "success" | "error";
 
@@ -112,7 +113,7 @@ export default function ContactPage() {
             <svg width="60" height="60" viewBox="0 0 60 60" className="mx-auto mb-4">
               <rect x="5" y="5" width="50" height="50" fill="none" stroke="var(--terracotta)" strokeWidth="1.5" transform="rotate(45 30 30)" />
               <rect x="12" y="12" width="36" height="36" fill="none" stroke="var(--sand)" strokeWidth="1" opacity="0.4" transform="rotate(45 30 30)" />
-              <text x="30" y="36" textAnchor="middle" fill="var(--terracotta)" fontSize="20">✉</text>
+              <foreignObject x="15" y="16" width="30" height="30"><Icon name="envelope" size={24} color="var(--terracotta)" /></foreignObject>
             </svg>
           </div>
 
@@ -150,7 +151,7 @@ export default function ContactPage() {
                 border: "1px solid rgba(80, 227, 194, 0.3)",
               }}
             >
-              <div className="text-6xl mb-6">✓</div>
+              <div className="flex justify-center mb-6"><Icon name="check" size={60} color="var(--role-al3omda)" /></div>
               <h2
                 className="text-2xl font-bold mb-3"
                 style={{ fontFamily: "var(--font-reem-kufi)", color: "var(--role-al3omda)" }}

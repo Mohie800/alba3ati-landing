@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Icon, type IconName } from "@/components/icons";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -13,9 +14,9 @@ const fadeIn = {
   }),
 };
 
-const guidelines = [
+const guidelines: { icon: IconName; title: string; color: string; items: string[] }[] = [
   {
-    icon: "🤝",
+    icon: "handshake",
     title: "١. الاحترام المتبادل",
     color: "var(--role-al3omda)",
     items: [
@@ -26,7 +27,7 @@ const guidelines = [
     ],
   },
   {
-    icon: "🎙️",
+    icon: "microphone",
     title: "٢. آداب المحادثة الصوتية",
     color: "var(--role-ba3ati)",
     items: [
@@ -37,7 +38,7 @@ const guidelines = [
     ],
   },
   {
-    icon: "🎮",
+    icon: "gamepad",
     title: "٣. اللعب النظيف",
     color: "var(--role-damazeen)",
     items: [
@@ -48,7 +49,7 @@ const guidelines = [
     ],
   },
   {
-    icon: "🛡️",
+    icon: "shield",
     title: "٤. المحتوى المحظور",
     color: "var(--role-sitalwada3)",
     items: [
@@ -59,7 +60,7 @@ const guidelines = [
     ],
   },
   {
-    icon: "⚡",
+    icon: "lightning",
     title: "٥. الإبلاغ عن المخالفات",
     color: "var(--role-abujanzeer)",
     items: [
@@ -70,7 +71,7 @@ const guidelines = [
     ],
   },
   {
-    icon: "⚖️",
+    icon: "scales",
     title: "٦. العقوبات",
     color: "var(--terracotta)",
     items: [
@@ -81,7 +82,7 @@ const guidelines = [
     ],
   },
   {
-    icon: "🌟",
+    icon: "star",
     title: "٧. كن جزءاً إيجابياً من المجتمع",
     color: "var(--role-al3omda)",
     items: [
@@ -229,7 +230,7 @@ export default function CommunityPage() {
               </div>
 
               <div className="flex items-center gap-4 mb-6">
-                <span className="text-3xl">{section.icon}</span>
+                <Icon name={section.icon} size={30} color={section.color} />
                 <h2
                   className="text-2xl font-bold"
                   style={{ fontFamily: "var(--font-reem-kufi)", color: section.color }}

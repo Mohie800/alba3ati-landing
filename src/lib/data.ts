@@ -1,3 +1,5 @@
+import type { IconName } from "@/components/icons";
+
 export const roles = [
   {
     id: "ba3ati",
@@ -47,81 +49,81 @@ export const roles = [
   },
 ];
 
-export const features = [
+export const features: { icon: IconName; title: string; description: string }[] = [
   {
-    icon: "🏠",
+    icon: "house",
     title: "غرف خاصة وعامة",
     description: "أنشئ غرف خاصة بكود أو انضم لغرف عامة",
   },
   {
-    icon: "🎙️",
+    icon: "microphone",
     title: "صوت مباشر",
     description: "محادثة صوتية مدمجة لمرحلة النقاش",
   },
   {
-    icon: "⏱️",
+    icon: "timer",
     title: "مؤقت ذكي",
     description: "أوقات نقاش قابلة للتعديل",
   },
   {
-    icon: "👥",
-    title: "5 إلى 15 لاعب",
+    icon: "people",
+    title: "5 إلى 20 لاعب",
     description: "أحجام غرف مرنة",
   },
   {
-    icon: "🎭",
+    icon: "masks",
     title: "6 أدوار فريدة",
     description: "كل دور بقدرات ليلية خاصة",
   },
   {
-    icon: "📱",
+    icon: "phone",
     title: "iOS و Android",
     description: "متوفرة على كلا المنصتين",
   },
 ];
 
-export const gameSteps = [
+export const gameSteps: { step: number; title: string; description: string; icon: IconName }[] = [
   {
     step: 1,
     title: "أنشئ غرفة أو انضم لغرفة",
-    description: "5 إلى 15 لاعب",
-    icon: "🚪",
+    description: "5 إلى 20 لاعب",
+    icon: "door",
   },
   {
     step: 2,
     title: "يتم توزيع الأدوار سرياً",
     description: "كل لاعب يحصل على دور سري",
-    icon: "🎭",
+    icon: "masks",
   },
   {
     step: 3,
     title: "مرحلة الليل",
     description: "كل دور ينفذ قدرته الليلية سراً",
-    icon: "🌙",
+    icon: "moon",
   },
   {
     step: 4,
     title: "مرحلة النهار",
     description: "اللاعبون يتناقشون عبر المحادثة الصوتية",
-    icon: "☀️",
+    icon: "sun",
   },
   {
     step: 5,
     title: "التصويت",
     description: "القرية تصوت لطرد مشتبه",
-    icon: "🗳️",
+    icon: "ballot",
   },
   {
     step: 6,
     title: "من يفوز؟",
     description:
       "البعاتي يفوز بتجاوز عدد الأهالي. الأهالي يفوزون بكشف كل البعاتي. ابو جنزير يفوز ببقائه الأخير.",
-    icon: "🏆",
+    icon: "trophy",
   },
 ];
 
-export const aboutHighlights = [
-  { icon: "🎭", text: "أدوار سرية فريدة" },
-  { icon: "🎙️", text: "محادثة صوتية مباشرة" },
-  { icon: "⚡", text: "لعب في الوقت الحقيقي" },
+export const aboutHighlights: { icon: IconName; text: string }[] = [
+  { icon: "masks", text: "أدوار سرية فريدة" },
+  { icon: "microphone", text: "محادثة صوتية مباشرة" },
+  { icon: "lightning", text: "لعب في الوقت الحقيقي" },
 ];

@@ -10,6 +10,7 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import { roles, features, gameSteps, aboutHighlights } from "@/lib/data";
+import { Icon } from "@/components/icons";
 
 /* ==========================================================================
    CSS-IN-JS STYLES — Geometric patterns, keyframes, backgrounds
@@ -498,6 +499,13 @@ function FloatingAccents() {
 }
 
 /* ==========================================================================
+   SHARED CONSTANTS
+   ========================================================================== */
+const GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=com.alba3ati.app";
+const LAUNCH_TARGET = new Date("2026-03-15T22:00:00+02:00").getTime();
+const isLaunched = () => Date.now() >= LAUNCH_TARGET;
+
+/* ==========================================================================
    SECTION COMPONENTS
    ========================================================================== */
 
@@ -603,8 +611,98 @@ function ComingSoonModal({
   );
 }
 
+function GooglePlayComingSoonModal({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="fixed inset-0 z-[9999] flex items-center justify-center px-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onClick={onClose}
+        >
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+
+          <motion.div
+            className="relative w-full max-w-sm rounded-2xl overflow-hidden"
+            style={{
+              background:
+                "linear-gradient(145deg, var(--indigo), var(--indigo-dark, #1a1040))",
+              border: "2px solid var(--terracotta)",
+              boxShadow:
+                "0 25px 60px rgba(0,0,0,0.5), 0 0 40px rgba(199,91,57,0.15)",
+            }}
+            initial={{ scale: 0.8, y: 30, opacity: 0 }}
+            animate={{ scale: 1, y: 0, opacity: 1 }}
+            exit={{ scale: 0.8, y: 30, opacity: 0 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div
+              className="h-1.5 w-full"
+              style={{
+                background:
+                  "linear-gradient(90deg, var(--terracotta), var(--sand), var(--terracotta))",
+              }}
+            />
+
+            <div className="p-8 text-center" dir="rtl">
+              <motion.div
+                className="mx-auto mb-5 w-16 h-16 rounded-2xl flex items-center justify-center"
+                style={{ background: "rgba(199,91,57,0.15)" }}
+                initial={{ rotate: -10 }}
+                animate={{ rotate: 0 }}
+                transition={{ delay: 0.15, type: "spring" }}
+              >
+                <Icon name="googlePlay" size={36} color="var(--sand)" />
+              </motion.div>
+
+              <h3
+                className="text-2xl font-bold mb-3"
+                style={{
+                  fontFamily: "var(--font-reem-kufi)",
+                  color: "var(--sand-light)",
+                }}
+              >
+                قريبًا على Google Play
+              </h3>
+              <p
+                className="text-base mb-8 leading-relaxed"
+                style={{ color: "var(--sand)", opacity: 0.7 }}
+              >
+                نسخة Android في الطريق — العد التنازلي شغال!
+              </p>
+
+              <button
+                onClick={onClose}
+                className="geo-btn px-8 py-3 text-base font-bold"
+                style={{
+                  fontFamily: "var(--font-reem-kufi)",
+                  background: "var(--terracotta)",
+                  color: "var(--sand-light)",
+                }}
+              >
+                تمام
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 function HeroSection() {
   const [iosModal, setIosModal] = useState(false);
+  const [gpModal, setGpModal] = useState(false);
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -785,20 +883,25 @@ function HeroSection() {
         >
           <button
             onClick={() => setIosModal(true)}
-            className="geo-btn px-10 py-4 text-lg font-bold"
+            className="geo-btn px-10 py-4 text-lg font-bold flex items-center gap-2"
             style={{
               fontFamily: "var(--font-reem-kufi)",
               background: "var(--terracotta)",
               color: "var(--sand-light)",
             }}
           >
+            <Icon name="apple" size={20} color="var(--sand-light)" />
             حمّل على iOS
           </button>
-          <a
-            href="https://play.google.com/store/apps/details?id=com.alba3ati.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="geo-btn px-10 py-4 text-lg font-bold inline-block text-center no-underline"
+          <button
+            onClick={() => {
+              if (isLaunched()) {
+                window.open(GOOGLE_PLAY_URL, "_blank", "noopener,noreferrer");
+              } else {
+                setGpModal(true);
+              }
+            }}
+            className="geo-btn px-10 py-4 text-lg font-bold flex items-center gap-2"
             style={{
               fontFamily: "var(--font-reem-kufi)",
               background: "rgba(232,213,183,0.1)",
@@ -808,10 +911,12 @@ function HeroSection() {
                 "polygon(8% 0%, 92% 0%, 100% 50%, 92% 100%, 8% 100%, 0% 50%)",
             }}
           >
+            <Icon name="googlePlay" size={20} color="var(--sand)" />
             حمّل على Android
-          </a>
+          </button>
         </motion.div>
         <ComingSoonModal open={iosModal} onClose={() => setIosModal(false)} />
+        <GooglePlayComingSoonModal open={gpModal} onClose={() => setGpModal(false)} />
       </motion.div>
 
       {/* Geometric village silhouette */}
@@ -863,6 +968,243 @@ function HeroSection() {
         </svg>
       </div>
     </section>
+  );
+}
+
+/* ---- COUNTDOWN ---- */
+function CountdownSection() {
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+
+  const calcRemaining = () => {
+    const diff = Math.max(0, LAUNCH_TARGET - Date.now());
+    return {
+      days: Math.floor(diff / 86400000),
+      hours: Math.floor((diff % 86400000) / 3600000),
+      minutes: Math.floor((diff % 3600000) / 60000),
+      seconds: Math.floor((diff % 60000) / 1000),
+      done: diff === 0,
+    };
+  };
+
+  const [time, setTime] = useState(calcRemaining);
+
+  useEffect(() => {
+    const id = setInterval(() => setTime(calcRemaining()), 1000);
+    return () => clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const units = [
+    { label: "ثانية", value: time.seconds },
+    { label: "دقيقة", value: time.minutes },
+    { label: "ساعة", value: time.hours },
+    { label: "يوم", value: time.days },
+  ];
+
+  return (
+    <>
+      {/* Zigzag divider */}
+      <div
+        style={{
+          width: "100%",
+          height: "30px",
+          background: `
+            linear-gradient(135deg, var(--indigo) 25%, transparent 25%) -14px 0,
+            linear-gradient(225deg, var(--indigo) 25%, transparent 25%) -14px 0,
+            linear-gradient(315deg, var(--indigo) 25%, transparent 25%),
+            linear-gradient(45deg, var(--indigo) 25%, transparent 25%)
+          `,
+          backgroundSize: "28px 30px",
+          backgroundColor: "var(--terracotta)",
+        }}
+      />
+      <section
+        ref={ref}
+        className="relative py-16 sm:py-20 overflow-hidden"
+        style={{ background: "var(--terracotta)" }}
+      >
+        {/* Pattern overlay */}
+        <div
+          className="absolute inset-0 pattern-diamonds"
+          style={{ opacity: 0.4 }}
+        />
+
+        {/* Rotating star decoration */}
+        <motion.div
+          className="absolute -right-16 -top-16 opacity-[0.07] hidden lg:block"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        >
+          <EightPointStar size={200} color="var(--sand)" />
+        </motion.div>
+        <motion.div
+          className="absolute -left-12 -bottom-12 opacity-[0.07] hidden lg:block"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+        >
+          <EightPointStar size={160} color="var(--sand)" />
+        </motion.div>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          {/* Android icon */}
+          <motion.div
+            className="flex justify-center mb-4"
+            initial={{ scale: 0 }}
+            animate={isInView ? { scale: 1 } : {}}
+            transition={{ duration: 0.5, type: "spring", bounce: 0.4 }}
+          >
+            <div
+              className="w-16 h-16 flex items-center justify-center rounded-2xl"
+              style={{
+                background: "rgba(232,213,183,0.15)",
+                border: "2px solid rgba(232,213,183,0.3)",
+              }}
+            >
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.523 2.237a.625.625 0 0 0-1.078.636l1.046 1.774A7.477 7.477 0 0 0 12 2.75a7.477 7.477 0 0 0-5.49 1.897l1.045-1.774a.625.625 0 0 0-1.078-.636L5.16 4.724A7.5 7.5 0 0 0 4.5 10.25h15a7.5 7.5 0 0 0-.66-5.526l-1.317-2.487zM8.75 7.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zm6.5 0a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zM5 11.75a1 1 0 0 0-1 1v4.5a1 1 0 0 0 1 1h.5v2.25a1.25 1.25 0 1 0 2.5 0v-2.25h3v2.25a1.25 1.25 0 1 0 2.5 0v-2.25h3v2.25a1.25 1.25 0 1 0 2.5 0v-2.25h.5a1 1 0 0 0 1-1v-4.5a1 1 0 0 0-1-1H5z"
+                  fill="var(--sand-light)"
+                />
+              </svg>
+            </div>
+          </motion.div>
+
+          {/* Heading */}
+          <motion.h2
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3"
+            style={{
+              fontFamily: "var(--font-reem-kufi)",
+              color: "var(--sand-light)",
+              textShadow: "0 2px 15px rgba(0,0,0,0.2)",
+            }}
+            initial={{ y: 30, opacity: 0 }}
+            animate={isInView ? { y: 0, opacity: 1 } : {}}
+            transition={{ delay: 0.15, duration: 0.6 }}
+          >
+            إطلاق نسخة Android
+          </motion.h2>
+
+          <motion.p
+            className="text-base sm:text-lg mb-8"
+            style={{ color: "var(--sand)", opacity: 0.85 }}
+            initial={{ y: 20, opacity: 0 }}
+            animate={isInView ? { y: 0, opacity: 0.85 } : {}}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            العد التنازلي لإطلاق اللعبة على متجر Google Play
+          </motion.p>
+
+          {/* Countdown boxes */}
+          {time.done ? (
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, type: "spring" }}
+            >
+              <a
+                href={GOOGLE_PLAY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="geo-btn inline-flex items-center gap-2 px-12 py-5 text-xl font-bold no-underline"
+                style={{
+                  fontFamily: "var(--font-reem-kufi)",
+                  background: "var(--sand)",
+                  color: "var(--indigo)",
+                }}
+              >
+                <Icon name="googlePlay" size={22} color="var(--indigo)" />
+                حمّل الآن من Google Play
+              </a>
+            </motion.div>
+          ) : (
+            <motion.div
+              className="flex items-center justify-center gap-3 sm:gap-5"
+              initial={{ y: 30, opacity: 0 }}
+              animate={isInView ? { y: 0, opacity: 1 } : {}}
+              transition={{ delay: 0.4, duration: 0.6 }}
+            >
+              {units.map((unit, i) => (
+                <motion.div
+                  key={unit.label}
+                  className="flex flex-col items-center"
+                  initial={{ scale: 0 }}
+                  animate={isInView ? { scale: 1 } : {}}
+                  transition={{
+                    delay: 0.5 + i * 0.1,
+                    type: "spring",
+                    bounce: 0.3,
+                  }}
+                >
+                  <div
+                    className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center mb-2"
+                    style={{
+                      background: "rgba(26,26,46,0.4)",
+                      border: "2px solid rgba(232,213,183,0.25)",
+                      clipPath:
+                        "polygon(15% 0%, 85% 0%, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0% 85%, 0% 15%)",
+                    }}
+                  >
+                    <span
+                      className="text-2xl sm:text-3xl md:text-4xl font-bold tabular-nums"
+                      style={{
+                        fontFamily: "var(--font-reem-kufi)",
+                        color: "var(--sand-light)",
+                      }}
+                    >
+                      {String(unit.value).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <span
+                    className="text-xs sm:text-sm"
+                    style={{
+                      fontFamily: "var(--font-reem-kufi)",
+                      color: "var(--sand)",
+                      opacity: 0.7,
+                    }}
+                  >
+                    {unit.label}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+
+          {/* Geometric divider */}
+          <motion.div
+            className="flex items-center justify-center gap-2 mt-8"
+            initial={{ width: 0, opacity: 0 }}
+            animate={isInView ? { width: "100%", opacity: 1 } : {}}
+            transition={{ delay: 0.7, duration: 0.5 }}
+          >
+            <div
+              className="h-[2px] flex-1 max-w-[60px]"
+              style={{
+                background:
+                  "linear-gradient(to left, var(--sand), transparent)",
+              }}
+            />
+            <div
+              className="w-2 h-2 rotate-45"
+              style={{ background: "var(--sand)" }}
+            />
+            <div
+              className="h-[2px] flex-1 max-w-[60px]"
+              style={{
+                background:
+                  "linear-gradient(to right, var(--sand), transparent)",
+              }}
+            />
+          </motion.div>
+        </div>
+      </section>
+    </>
   );
 }
 
@@ -967,7 +1309,7 @@ function AboutSection() {
                     className="hex-clip w-24 h-24 flex items-center justify-center"
                     style={{ background: "rgba(26,26,46,0.4)" }}
                   >
-                    <span className="text-4xl">{h.icon}</span>
+                    <Icon name={h.icon} size={40} color="var(--sand)" />
                   </div>
                 </div>
                 <span
@@ -1345,7 +1687,7 @@ function HowToPlaySection() {
 
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-2xl">{step.icon}</span>
+                          <Icon name={step.icon} size={24} color="var(--sand)" />
                           <h3
                             className="text-lg font-bold"
                             style={{
@@ -1516,7 +1858,7 @@ function FeaturesSection() {
                       border: "2px solid rgba(199,91,57,0.3)",
                     }}
                   >
-                    <span className="text-2xl -rotate-45">{feature.icon}</span>
+                    <span className="-rotate-45"><Icon name={feature.icon} size={24} color="var(--sand)" /></span>
                   </div>
                   <h3
                     className="text-lg font-bold"
@@ -1546,6 +1888,7 @@ function FeaturesSection() {
 /* ---- DOWNLOAD CTA ---- */
 function DownloadSection() {
   const [iosModal, setIosModal] = useState(false);
+  const [gpModal, setGpModal] = useState(false);
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -1697,20 +2040,25 @@ function DownloadSection() {
           >
             <button
               onClick={() => setIosModal(true)}
-              className="geo-btn px-12 py-5 text-xl font-bold"
+              className="geo-btn px-12 py-5 text-xl font-bold flex items-center gap-2"
               style={{
                 fontFamily: "var(--font-reem-kufi)",
                 background: "var(--sand)",
                 color: "var(--indigo)",
               }}
             >
+              <Icon name="apple" size={22} color="var(--indigo)" />
               App Store
             </button>
-            <a
-              href="https://play.google.com/store/apps/details?id=com.alba3ati.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="geo-btn px-12 py-5 text-xl font-bold inline-block text-center no-underline"
+            <button
+              onClick={() => {
+                if (isLaunched()) {
+                  window.open(GOOGLE_PLAY_URL, "_blank", "noopener,noreferrer");
+                } else {
+                  setGpModal(true);
+                }
+              }}
+              className="geo-btn px-12 py-5 text-xl font-bold flex items-center gap-2"
               style={{
                 fontFamily: "var(--font-reem-kufi)",
                 background: "transparent",
@@ -1720,10 +2068,12 @@ function DownloadSection() {
                   "polygon(8% 0%, 92% 0%, 100% 50%, 92% 100%, 8% 100%, 0% 50%)",
               }}
             >
+              <Icon name="googlePlay" size={22} color="var(--sand)" />
               Google Play
-            </a>
+            </button>
           </motion.div>
           <ComingSoonModal open={iosModal} onClose={() => setIosModal(false)} />
+          <GooglePlayComingSoonModal open={gpModal} onClose={() => setGpModal(false)} />
         </div>
       </section>
     </>
@@ -1930,6 +2280,7 @@ export default function Design3Page() {
       <style dangerouslySetInnerHTML={{ __html: patternStyles }} />
       <FloatingAccents />
       <HeroSection />
+      <CountdownSection />
       <AboutSection />
       <RolesSection />
       <HowToPlaySection />

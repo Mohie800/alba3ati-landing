@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
+import { Icon } from "@/components/icons";
 
 const DEEP_LINK_SCHEME = "alba3ati";
 const ANDROID_PACKAGE = "com.alba3ati.app";
@@ -140,7 +141,7 @@ export default function JoinRoomClient({ roomId }: { roomId: string }) {
                 marginBottom: "8px",
               }}
             >
-              🎭
+              <Icon name="masks" size={48} color="#c75b39" />
             </div>
             <h1
               style={{
@@ -307,7 +308,9 @@ export default function JoinRoomClient({ roomId }: { roomId: string }) {
                     e.currentTarget.style.transform = "scale(1)";
                   }}
                 >
-                  {isIOS ? "حمّل من App Store" : isAndroid ? "حمّل من Google Play" : "حمّل التطبيق"}
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                    {isIOS ? <><Icon name="apple" size={18} color="#1a1a2e" /> حمّل من App Store</> : isAndroid ? <><Icon name="googlePlay" size={18} color="#1a1a2e" /> حمّل من Google Play</> : "حمّل التطبيق"}
+                  </span>
                 </button>
 
                 {/* Show both store links on desktop */}
@@ -335,7 +338,7 @@ export default function JoinRoomClient({ roomId }: { roomId: string }) {
                         transition: "border-color 0.15s",
                       }}
                     >
-                      Google Play
+                      <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", justifyContent: "center" }}><Icon name="googlePlay" size={14} color="#e8d5b7" /> Google Play</span>
                     </a>
                     <a
                       href={APP_STORE_URL}
@@ -353,7 +356,7 @@ export default function JoinRoomClient({ roomId }: { roomId: string }) {
                         transition: "border-color 0.15s",
                       }}
                     >
-                      App Store
+                      <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", justifyContent: "center" }}><Icon name="apple" size={14} color="#e8d5b7" /> App Store</span>
                     </a>
                   </div>
                 )}
