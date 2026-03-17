@@ -503,7 +503,7 @@ function FloatingAccents() {
    ========================================================================== */
 const GOOGLE_PLAY_URL =
   "https://play.google.com/store/apps/details?id=com.alba3ati.app";
-const LAUNCH_TARGET = new Date("2026-03-16T22:00:00+02:00").getTime();
+const LAUNCH_TARGET = new Date("2026-03-17T21:00:00+02:00").getTime();
 const isLaunched = () => Date.now() >= LAUNCH_TARGET;
 
 /* ==========================================================================
