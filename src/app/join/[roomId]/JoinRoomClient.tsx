@@ -7,8 +7,7 @@ const DEEP_LINK_SCHEME = "alba3ati";
 const ANDROID_PACKAGE = "com.alba3ati.app";
 const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=com.alba3ati.app";
-const APP_STORE_URL =
-  "https://apps.apple.com/app/alba3ati/id_YOUR_APP_ID";
+const APP_STORE_URL = "https://apps.apple.com/app/alba3ati/id_YOUR_APP_ID";
 const ROOM_ID_REGEX = /^[a-z0-9]{7}$/i;
 
 const patternStyles = `
@@ -26,12 +25,15 @@ export default function JoinRoomClient({ roomId }: { roomId: string }) {
   const [status, setStatus] = useState<"trying" | "fallback">("trying");
 
   const isIOS = useMemo(
-    () => typeof navigator !== "undefined" && /iPhone|iPad|iPod/i.test(navigator.userAgent),
-    []
+    () =>
+      typeof navigator !== "undefined" &&
+      /iPhone|iPad|iPod/i.test(navigator.userAgent),
+    [],
   );
   const isAndroid = useMemo(
-    () => typeof navigator !== "undefined" && /Android/i.test(navigator.userAgent),
-    []
+    () =>
+      typeof navigator !== "undefined" && /Android/i.test(navigator.userAgent),
+    [],
   );
 
   const isValidRoom = ROOM_ID_REGEX.test(roomId);
@@ -82,7 +84,8 @@ export default function JoinRoomClient({ roomId }: { roomId: string }) {
       <div
         style={{
           minHeight: "100vh",
-          background: "linear-gradient(135deg, #1a1a2e 0%, #232342 50%, #1a1a2e 100%)",
+          background:
+            "linear-gradient(135deg, #1a1a2e 0%, #232342 50%, #1a1a2e 100%)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -102,7 +105,8 @@ export default function JoinRoomClient({ roomId }: { roomId: string }) {
             width: "300px",
             height: "300px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(199,91,57,0.15) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(199,91,57,0.15) 0%, transparent 70%)",
             animation: "pulseGlow 4s ease-in-out infinite",
           }}
         />
@@ -114,7 +118,8 @@ export default function JoinRoomClient({ roomId }: { roomId: string }) {
             width: "250px",
             height: "250px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(232,213,183,0.1) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(232,213,183,0.1) 0%, transparent 70%)",
             animation: "pulseGlow 5s ease-in-out infinite 1s",
           }}
         />
@@ -184,7 +189,8 @@ export default function JoinRoomClient({ roomId }: { roomId: string }) {
                 />
                 <style
                   dangerouslySetInnerHTML={{
-                    __html: "@keyframes spin { to { transform: rotate(360deg); } }",
+                    __html:
+                      "@keyframes spin { to { transform: rotate(360deg); } }",
                   }}
                 />
                 <p style={{ color: "#e8d5b7", fontSize: "18px", margin: 0 }}>
@@ -258,11 +264,13 @@ export default function JoinRoomClient({ roomId }: { roomId: string }) {
                   }}
                   onMouseOver={(e) => {
                     e.currentTarget.style.transform = "scale(1.03)";
-                    e.currentTarget.style.boxShadow = "0 6px 20px rgba(199,91,57,0.5)";
+                    e.currentTarget.style.boxShadow =
+                      "0 6px 20px rgba(199,91,57,0.5)";
                   }}
                   onMouseOut={(e) => {
                     e.currentTarget.style.transform = "scale(1)";
-                    e.currentTarget.style.boxShadow = "0 4px 16px rgba(199,91,57,0.35)";
+                    e.currentTarget.style.boxShadow =
+                      "0 4px 16px rgba(199,91,57,0.35)";
                   }}
                 >
                   افتح التطبيق
@@ -277,11 +285,23 @@ export default function JoinRoomClient({ roomId }: { roomId: string }) {
                     margin: "20px 0",
                   }}
                 >
-                  <div style={{ flex: 1, height: "1px", background: "rgba(232,213,183,0.15)" }} />
+                  <div
+                    style={{
+                      flex: 1,
+                      height: "1px",
+                      background: "rgba(232,213,183,0.15)",
+                    }}
+                  />
                   <span style={{ color: "#a0a0a0", fontSize: "14px" }}>
                     ما عندك التطبيق؟
                   </span>
-                  <div style={{ flex: 1, height: "1px", background: "rgba(232,213,183,0.15)" }} />
+                  <div
+                    style={{
+                      flex: 1,
+                      height: "1px",
+                      background: "rgba(232,213,183,0.15)",
+                    }}
+                  />
                 </div>
 
                 {/* Download button */}
@@ -308,8 +328,26 @@ export default function JoinRoomClient({ roomId }: { roomId: string }) {
                     e.currentTarget.style.transform = "scale(1)";
                   }}
                 >
-                  <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
-                    {isIOS ? <><Icon name="apple" size={18} color="#1a1a2e" /> حمّل من App Store</> : isAndroid ? <><Icon name="googlePlay" size={18} color="#1a1a2e" /> حمّل من Google Play</> : "حمّل التطبيق"}
+                  <span
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "8px",
+                    }}
+                  >
+                    {isIOS ? (
+                      <>
+                        <Icon name="apple" size={18} color="#1a1a2e" /> حمّل من
+                        App Store
+                      </>
+                    ) : isAndroid ? (
+                      <>
+                        <Icon name="googlePlay" size={18} color="#1a1a2e" />{" "}
+                        حمّل من Google Play
+                      </>
+                    ) : (
+                      "حمّل التطبيق"
+                    )}
                   </span>
                 </button>
 
@@ -338,7 +376,17 @@ export default function JoinRoomClient({ roomId }: { roomId: string }) {
                         transition: "border-color 0.15s",
                       }}
                     >
-                      <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", justifyContent: "center" }}><Icon name="googlePlay" size={14} color="#e8d5b7" /> Google Play</span>
+                      <span
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "6px",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Icon name="googlePlay" size={14} color="#e8d5b7" />{" "}
+                        Google Play
+                      </span>
                     </a>
                     <a
                       href={APP_STORE_URL}
@@ -356,7 +404,17 @@ export default function JoinRoomClient({ roomId }: { roomId: string }) {
                         transition: "border-color 0.15s",
                       }}
                     >
-                      <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", justifyContent: "center" }}><Icon name="apple" size={14} color="#e8d5b7" /> App Store</span>
+                      <span
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "6px",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Icon name="apple" size={14} color="#e8d5b7" /> App
+                        Store
+                      </span>
                     </a>
                   </div>
                 )}
@@ -372,7 +430,7 @@ export default function JoinRoomClient({ roomId }: { roomId: string }) {
               marginTop: "24px",
             }}
           >
-            لعبة الذكاء والخداع السودانية
+            لعبة البعاتي
           </p>
         </div>
       </div>

@@ -850,20 +850,6 @@ function HeroSection() {
           />
         </motion.div>
 
-        {/* Subtitle */}
-        <motion.p
-          className="text-xl sm:text-2xl md:text-3xl mb-4"
-          style={{
-            fontFamily: "var(--font-reem-kufi)",
-            color: "var(--sand)",
-            opacity: 0.85,
-          }}
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 0.85 }}
-          transition={{ delay: 1, duration: 0.6 }}
-        >
-          لعبة الذكاء والخداع السودانية
-        </motion.p>
 
         <motion.p
           className="text-base sm:text-lg mb-10 max-w-xl mx-auto"
@@ -2200,12 +2186,6 @@ function FooterSection() {
             />
           </div>
 
-          <p
-            className="text-sm mb-6"
-            style={{ color: "var(--sand)", opacity: 0.5 }}
-          >
-            لعبة الذكاء والخداع السودانية
-          </p>
 
           {/* Community Links */}
           {showCommunity && (
