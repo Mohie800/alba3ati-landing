@@ -7,7 +7,8 @@
       "namespace": "android_app",
       "package_name": "com.alba3ati.app",
       "sha256_cert_fingerprints": [
-        "71:E5:E3:5C:34:E1:7A:B4:CE:EF:12:D0:17:4B:16:5D:97:C2:32:E7:7A:81:93:DD:08:21:3B:21:5E:6B:0A:2D"
+        "71:E5:E3:5C:34:E1:7A:B4:CE:EF:12:D0:17:4B:16:5D:97:C2:32:E7:7A:81:93:DD:08:21:3B:21:5E:6B:0A:2D",
+        "02:C7:CA:CA:44:FD:78:35:32:1A:FB:A9:C3:D7:01:C5:48:43:1E:6A:30:2D:17:86:84:FB:8E:09:DE:7D:E3:89"
       ]
     }
   }

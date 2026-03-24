@@ -10,6 +10,14 @@ export const roles = [
       "القاتل الذي يتخفى بين الأهالي. كل ليلة يختار ضحية للقضاء عليها.",
   },
   {
+    id: "ba3ati-kabeer",
+    name: "بعاتي كبير",
+    team: "البعاتي",
+    color: "#1A5276",
+    description:
+      "قائد البعاتي. كل ليلة يختار القتل أو تحويل لاعب إلى بعاتي (إذا لم يكن محمياً). التحويل متاح مرة واحدة فقط طوال اللعبة.",
+  },
+  {
     id: "al3omda",
     name: "العمدة",
     team: "الأهالي",
@@ -49,7 +57,11 @@ export const roles = [
   },
 ];
 
-export const features: { icon: IconName; title: string; description: string }[] = [
+export const features: {
+  icon: IconName;
+  title: string;
+  description: string;
+}[] = [
   {
     icon: "house",
     title: "غرف خاصة وعامة",
@@ -72,7 +84,7 @@ export const features: { icon: IconName; title: string; description: string }[] 
   },
   {
     icon: "masks",
-    title: "6 أدوار فريدة",
+    title: "7 أدوار فريدة",
     description: "كل دور بقدرات ليلية خاصة",
   },
   {
@@ -82,7 +94,12 @@ export const features: { icon: IconName; title: string; description: string }[] 
   },
 ];
 
-export const gameSteps: { step: number; title: string; description: string; icon: IconName }[] = [
+export const gameSteps: {
+  step: number;
+  title: string;
+  description: string;
+  icon: IconName;
+}[] = [
   {
     step: 1,
     title: "أنشئ غرفة أو انضم لغرفة",

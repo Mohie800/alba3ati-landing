@@ -14,6 +14,7 @@
 
   /* Role accent colors */
   --role-ba3ati: #4a90e2;
+  --role-ba3ati-kabeer: #1a5276;
   --role-al3omda: #50e3c2;
   --role-damazeen: #e94f37;
   --role-sitalwada3: #8e44ad;
@@ -36,6 +37,7 @@
   --color-indigo-light: var(--indigo-light);
   --color-indigo-mid: var(--indigo-mid);
   --color-role-ba3ati: var(--role-ba3ati);
+  --color-role-ba3ati-kabeer: var(--role-ba3ati-kabeer);
   --color-role-al3omda: var(--role-al3omda);
   --color-role-damazeen: var(--role-damazeen);
   --color-role-sitalwada3: var(--role-sitalwada3);

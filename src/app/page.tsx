@@ -505,6 +505,60 @@ const GOOGLE_PLAY_URL =
   "https://play.google.com/store/apps/details?id=com.alba3ati.app";
 const LAUNCH_TARGET = new Date("2026-03-17T21:00:00+02:00").getTime();
 const isLaunched = () => Date.now() >= LAUNCH_TARGET;
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://alba3ati.app";
+
+const homeJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: "البعاتي",
+      inLanguage: "ar",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: `${SITE_URL}/?q={search_term_string}`,
+        "query-input": "required name=search_term_string",
+      },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/#webpage`,
+      url: `${SITE_URL}/`,
+      name: "لعبة البعاتي | لعبة أدوار اجتماعية سودانية",
+      isPartOf: {
+        "@id": `${SITE_URL}/#website`,
+      },
+      about: {
+        "@id": `${SITE_URL}/#game`,
+      },
+      inLanguage: "ar",
+      description:
+        "البعاتي لعبة جماعية مستوحاة من التراث السوداني. العب مع أصدقائك، اكتشف الأدوار السرية، واكشف البعاتي قبل فوات الأوان.",
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": `${SITE_URL}/#game`,
+      name: "البعاتي",
+      operatingSystem: "Android, iOS",
+      applicationCategory: "GameApplication",
+      inLanguage: "ar",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "5",
+        ratingCount: "1",
+      },
+      downloadUrl: GOOGLE_PLAY_URL,
+    },
+  ],
+};
 
 /* ==========================================================================
    SECTION COMPONENTS
@@ -805,23 +859,23 @@ function HeroSection() {
         </motion.div>
 
         {/* Title */}
-        {/* <motion.h1
-          className="text-7xl sm:text-8xl md:text-9xl font-bold mb-6 tracking-tight"
+        <motion.h1
+          className="text-4xl sm:text-5xl md:text-6xl font-black mb-4 tracking-tight"
           style={{
             fontFamily: "var(--font-reem-kufi)",
-            color: "var(--sand)",
-            textShadow: "0 4px 30px rgba(199,91,57,0.3)",
+            color: "var(--sand-light)",
+            textShadow: "0 4px 30px rgba(199,91,57,0.25)",
           }}
-          initial={{ scale: 1.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
           transition={{
             duration: 0.8,
-            delay: 0.3,
+            delay: 0.45,
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-          البعاتي
-        </motion.h1> */}
+          لعبة البعاتي
+        </motion.h1>
 
         {/* Geometric line decoration */}
         <motion.div
@@ -849,7 +903,6 @@ function HeroSection() {
             }}
           />
         </motion.div>
-
 
         <motion.p
           className="text-base sm:text-lg mb-10 max-w-xl mx-auto"
@@ -2186,7 +2239,6 @@ function FooterSection() {
             />
           </div>
 
-
           {/* Community Links */}
           {showCommunity && (
             <div className="mb-6">
@@ -2265,11 +2317,15 @@ function FooterSection() {
 
 export default function Design3Page() {
   return (
-    <div
+    <main
       className="geo-page"
       dir="rtl"
       style={{ fontFamily: "var(--font-cairo)" }}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
+      />
       <style dangerouslySetInnerHTML={{ __html: patternStyles }} />
       <FloatingAccents />
       <HeroSection />
@@ -2280,6 +2336,6 @@ export default function Design3Page() {
       <FeaturesSection />
       <DownloadSection />
       <FooterSection />
-    </div>
+    </main>
   );
 }
