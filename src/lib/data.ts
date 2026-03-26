@@ -55,6 +55,14 @@ export const roles = [
     description:
       "الذئب الوحيد. يلعب لوحده ضد الجميع. يفوز عندما يكون آخر من يبقى.",
   },
+  {
+    id: "jenabu",
+    name: "جنابو",
+    team: "الأهالي",
+    color: "#2E86C1",
+    description:
+      "المحقق. كل ليلة يختار لاعبين لمعرفة إذا كانوا في نفس الفريق أم لا.",
+  },
 ];
 
 export const features: {
@@ -84,7 +92,7 @@ export const features: {
   },
   {
     icon: "masks",
-    title: "7 أدوار فريدة",
+    title: "8 أدوار فريدة",
     description: "كل دور بقدرات ليلية خاصة",
   },
   {
