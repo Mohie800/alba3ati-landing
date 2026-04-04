@@ -50,6 +50,7 @@ const roles: {
   team: string;
   teamColor: string;
   icon: LucideIcon;
+  image: string;
   description: string;
   ability: string;
   goal: string;
@@ -60,6 +61,7 @@ const roles: {
     team: "البعاتي",
     teamColor: "var(--role-ba3ati)",
     icon: Sword,
+    image: "/roles/RoleBa3ati.png",
     description:
       "القاتل الذي يتخفى بين الأهالي. كل ليلة يختار ضحية للقضاء عليها.",
     ability: "اختيار لاعب للقضاء عليه كل ليلة",
@@ -76,6 +78,7 @@ const roles: {
     team: "البعاتي",
     teamColor: "var(--role-ba3ati-kabeer)",
     icon: Crown,
+    image: "/roles/RoleBa3atiKabeer.png",
     description:
       "قائد البعاتي. يمكنه كل ليلة اختيار القتل أو تحويل لاعب إلى بعاتي (إذا لم يكن محمياً).",
     ability:
@@ -93,6 +96,7 @@ const roles: {
     team: "الأهالي",
     teamColor: "var(--role-al3omda)",
     icon: Shield,
+    image: "/roles/RoleAl3omda.png",
     description: "حامي القرية. كل ليلة يختار لاعباً لحمايته من البعاتي.",
     ability: "حماية لاعب واحد كل ليلة من القتل",
     goal: "حماية الأبرياء ومساعدة القرية في كشف البعاتي",
@@ -107,6 +111,7 @@ const roles: {
     team: "الأهالي",
     teamColor: "var(--role-damazeen)",
     icon: Swords,
+    image: "/roles/RoleDamazeen.png",
     description:
       "المحارب الشجاع. يمكنه إما القضاء على مشبوه أو حماية الجميع لليلة واحدة.",
     ability:
@@ -120,11 +125,12 @@ const roles: {
     ],
   },
   {
-    name: "ست الودع",
+    name: "الكاشف",
     team: "الأهالي",
     teamColor: "var(--role-sitalwada3)",
     icon: Sparkles,
-    description: "العرّافة. كل ليلة تكشف الدور السري للاعب واحد.",
+    image: "/roles/RoleSitAlwada3.png",
+    description: " كل ليلة تكشف الدور السري للاعب واحد.",
     ability: "كشف دور لاعب واحد كل ليلة",
     goal: "جمع المعلومات ومساعدة القرية في تحديد البعاتي",
     tips: [
@@ -140,6 +146,7 @@ const roles: {
     team: "الأهالي",
     teamColor: "var(--role-ballah)",
     icon: Swords,
+    image: "/roles/RoleBallahAbuSeif.png",
     description:
       "المحارب الصامت. يملك سيفاً يستخدمه مرة واحدة طوال اللعبة للقضاء على لاعب بضربة لا يمكن صدها.",
     ability:
@@ -148,7 +155,7 @@ const roles: {
     tips: [
       "لا تتسرع في استخدام سيفك — انتظر حتى تكون متأكداً من هوية البعاتي",
       "ضربتك لا يمكن صدها حتى من العمدة أو الدمازين — استغل هذه الميزة",
-      "إذا كشفت ست الودع هوية البعاتي، هذا أفضل وقت لاستخدام سيفك",
+      "إذا عرف الكاشف هوية البعاتي، هذا أفضل وقت لاستخدام سيفك",
       "تذكّر: فرصتك واحدة فقط طوال اللعبة!",
     ],
   },
@@ -157,6 +164,7 @@ const roles: {
     team: "ابو جنزير",
     teamColor: "var(--role-abujanzeer)",
     icon: LinkIcon,
+    image: "/roles/RoleAbuJanzeer.png",
     description: "يلعب لوحده ضد الجميع. يفوز عندما يكون آخر من يبقى.",
     ability: "اختيار لاعب للقضاء عليه كل ليلة (مستقل عن البعاتي)",
     goal: "البقاء حياً حتى النهاية والفوز وحده",
@@ -172,6 +180,7 @@ const roles: {
     team: "الأهالي",
     teamColor: "var(--role-ba3ati)",
     icon: Search,
+    image: "/roles/RoleJenabu.png",
     description:
       "المحقق. كل ليلة يختار لاعبين لمعرفة إذا كانوا في نفس الفريق أم لا.",
     ability: "اختيار لاعبين كل ليلة للتحقيق إن كانوا في نفس الفريق",
@@ -212,7 +221,7 @@ const gamePhases: {
     details: [
       "كل لاعب يرى دوره فقط ولا يعرف أدوار الآخرين",
       "يمكن لمنشئ الغرفة التحكم في عدد كل دور",
-      "الأدوار المتاحة: البعاتي، بعاتي كبير، العمدة، شيخ الدمازين، ست الودع، بله اب سيف، ابو جنزير، جنابو",
+      "الأدوار المتاحة: البعاتي، بعاتي كبير، العمدة، شيخ الدمازين، الكاشف، بله اب سيف، ابو جنزير، جنابو",
     ],
   },
   {
@@ -224,7 +233,7 @@ const gamePhases: {
       "البعاتي يختار ضحية للقضاء عليها",
       "بعاتي كبير يختار القتل أو تحويل لاعب إلى بعاتي (مرة واحدة للتحويل)",
       "العمدة يختار لاعباً لحمايته",
-      "ست الودع تكشف دور لاعب واحد",
+      "الكاشف تكشف دور لاعب واحد",
       "شيخ الدمازين يستخدم قدرته (إن لم يستخدمها بعد)",
       "بله اب سيف يستخدم سيفه (إن لم يستخدمه بعد)",
       "ابو جنزير يختار ضحيته",
@@ -842,10 +851,16 @@ export default function HowToPlayPage() {
               >
                 <div className="flex items-center gap-4">
                   <div
-                    className="w-14 h-14 rounded-xl flex items-center justify-center"
+                    className="w-16 h-16 rounded-xl flex items-center justify-center overflow-hidden"
                     style={{ background: `${role.teamColor}25` }}
                   >
-                    <role.icon size={28} color={role.teamColor} />
+                    <Image
+                      src={role.image}
+                      alt={role.name}
+                      width={56}
+                      height={56}
+                      className="object-contain"
+                    />
                   </div>
                   <div>
                     <h3

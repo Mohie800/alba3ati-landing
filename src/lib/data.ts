@@ -6,6 +6,7 @@ export const roles = [
     name: "البعاتي",
     team: "البعاتي",
     color: "#4A90E2",
+    image: "/roles/RoleBa3ati.png",
     description:
       "القاتل الذي يتخفى بين الأهالي. كل ليلة يختار ضحية للقضاء عليها.",
   },
@@ -14,6 +15,7 @@ export const roles = [
     name: "بعاتي كبير",
     team: "البعاتي",
     color: "#1A5276",
+    image: "/roles/RoleBa3atiKabeer.png",
     description:
       "قائد البعاتي. كل ليلة يختار القتل أو تحويل لاعب إلى بعاتي (إذا لم يكن محمياً). التحويل متاح مرة واحدة فقط طوال اللعبة.",
   },
@@ -22,6 +24,7 @@ export const roles = [
     name: "العمدة",
     team: "الأهالي",
     color: "#50E3C2",
+    image: "/roles/RoleAl3omda.png",
     description: "حامي القرية. كل ليلة يختار لاعباً لحمايته من البعاتي.",
   },
   {
@@ -29,14 +32,16 @@ export const roles = [
     name: "شيخ الدمازين",
     team: "الأهالي",
     color: "#E94F37",
+    image: "/roles/RoleDamazeen.png",
     description:
       "المحارب الشجاع. يمكنه إما القضاء على مشبوه أو حماية الجميع لليلة واحدة.",
   },
   {
     id: "sitalwada3",
-    name: "ست الودع",
+    name: "الكاشف",
     team: "الأهالي",
     color: "#8E44AD",
+    image: "/roles/RoleSitAlwada3.png",
     description: "العرّافة. كل ليلة تكشف الدور السري للاعب واحد.",
   },
   {
@@ -44,6 +49,7 @@ export const roles = [
     name: "بله اب سيف",
     team: "الأهالي",
     color: "#D35400",
+    image: "/roles/RoleBallahAbuSeif.png",
     description:
       "المحارب الصامت. يملك سيفاً يستخدمه مرة واحدة طوال اللعبة للقضاء على لاعب بضربة لا يمكن صدها.",
   },
@@ -52,6 +58,7 @@ export const roles = [
     name: "ابو جنزير",
     team: "ابو جنزير",
     color: "#F1C40F",
+    image: "/roles/RoleAbuJanzeer.png",
     description:
       "الذئب الوحيد. يلعب لوحده ضد الجميع. يفوز عندما يكون آخر من يبقى.",
   },
@@ -60,6 +67,7 @@ export const roles = [
     name: "جنابو",
     team: "الأهالي",
     color: "#2E86C1",
+    image: "/roles/RoleJenabu.png",
     description:
       "المحقق. كل ليلة يختار لاعبين لمعرفة إذا كانوا في نفس الفريق أم لا.",
   },

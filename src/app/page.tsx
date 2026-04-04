@@ -1517,45 +1517,56 @@ function RolesSection() {
                 >
                   {/* Front */}
                   <div
-                    className="card-face flex flex-col items-center justify-center p-4 rounded-none"
+                    className="card-face flex flex-col items-center justify-end rounded-none overflow-hidden"
                     style={{
-                      background: "var(--indigo-light)",
+                      background: `linear-gradient(180deg, ${role.color}20 0%, var(--indigo-light) 40%)`,
                       border: `3px solid ${role.color}`,
                       clipPath:
                         "polygon(50% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%)",
                     }}
                   >
-                    {/* Geometric frame decoration */}
+                    {/* Role character image */}
                     <div
-                      className="w-16 h-16 flex items-center justify-center mb-3"
-                      style={{
-                        background: `${role.color}15`,
-                        border: `2px solid ${role.color}40`,
-                        clipPath:
-                          "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
-                      }}
+                      className="absolute inset-0 flex items-center justify-center"
+                      style={{ top: "-10px" }}
                     >
-                      <EightPointStar size={28} color={role.color} />
+                      <Image
+                        src={role.image}
+                        alt={role.name}
+                        width={140}
+                        height={140}
+                        className="object-contain drop-shadow-lg"
+                        style={{
+                          filter: `drop-shadow(0 0 8px ${role.color}40)`,
+                        }}
+                      />
                     </div>
-                    <h3
-                      className="text-lg font-bold mb-1"
+                    {/* Name overlay at bottom */}
+                    <div
+                      className="relative z-10 w-full text-center pb-5 pt-8"
                       style={{
-                        fontFamily: "var(--font-reem-kufi)",
-                        color: role.color,
+                        background: `linear-gradient(0deg, var(--indigo-light) 30%, transparent 100%)`,
                       }}
                     >
-                      {role.name}
-                    </h3>
-                    <span
-                      className="text-xs px-3 py-0.5"
-                      style={{
-                        color: "var(--sand)",
-                        opacity: 0.6,
-                        background: `${role.color}10`,
-                      }}
-                    >
-                      {role.team}
-                    </span>
+                      <h3
+                        className="text-base font-bold"
+                        style={{
+                          fontFamily: "var(--font-reem-kufi)",
+                          color: role.color,
+                        }}
+                      >
+                        {role.name}
+                      </h3>
+                      <span
+                        className="text-xs px-3 py-0.5"
+                        style={{
+                          color: "var(--sand)",
+                          opacity: 0.6,
+                        }}
+                      >
+                        {role.team}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Back */}
