@@ -71,6 +71,15 @@ export const roles = [
     description:
       "المحقق. كل ليلة يختار لاعبين لمعرفة إذا كانوا في نفس الفريق أم لا.",
   },
+  {
+    id: "wadalzalat",
+    name: "وَد الزلط",
+    team: "الأهالي",
+    color: "#90EE90",
+    image: "/roles/RoleWadAlzalat.png",
+    description:
+      "حارس القرية بجردل الماء. يملك رشة ماء واحدة فقط طوال اللعبة — إذا رشّ بعاتي مات البعاتي، وإذا رشّ بريئاً مات هو نفسه.",
+  },
 ];
 
 export const features: {
@@ -100,7 +109,7 @@ export const features: {
   },
   {
     icon: "masks",
-    title: "8 أدوار فريدة",
+    title: "9 أدوار فريدة",
     description: "كل دور بقدرات ليلية خاصة",
   },
   {

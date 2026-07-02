@@ -11,11 +11,13 @@ const ROOM_ID_REGEX = /^[a-z0-9]{7}$/i;
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { roomId } = await params;
   if (!ROOM_ID_REGEX.test(roomId)) {
-    return { title: "رابط غير صالح — البعاتي" };
+    return { title: "رابط غير صالح — البعاتي", robots: { index: false, follow: false } };
   }
   return {
     title: "انضم للغرفة — البعاتي",
     description: `انضم لغرفة في لعبة البعاتي! لعبة الذكاء والخداع السودانية.`,
+    // Room-invite links are ephemeral and user-specific — keep them out of the index.
+    robots: { index: false, follow: false },
     openGraph: {
       title: "انضم للغرفة — البعاتي",
       description:

@@ -503,19 +503,37 @@ function FloatingAccents() {
    ========================================================================== */
 const GOOGLE_PLAY_URL =
   "https://play.google.com/store/apps/details?id=com.alba3ati.app";
+const APP_STORE_URL = "https://apps.apple.com/app/alba3ati/id6746601498";
 const LAUNCH_TARGET = new Date("2026-03-17T21:00:00+02:00").getTime();
 const isLaunched = () => Date.now() >= LAUNCH_TARGET;
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://alba3ati.app";
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://alba3ati.mohyeldeen.dev";
 
 const homeJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "البعاتي",
+      url: `${SITE_URL}/`,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/icon1.png`,
+        width: 512,
+        height: 512,
+      },
+    },
+    {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
       url: `${SITE_URL}/`,
       name: "البعاتي",
+      description:
+        "البعاتي لعبة أدوار اجتماعية سودانية مع محادثة صوتية مباشرة.",
+      publisher: {
+        "@id": `${SITE_URL}/#organization`,
+      },
       inLanguage: "ar",
       potentialAction: {
         "@type": "SearchAction",
@@ -534,28 +552,51 @@ const homeJsonLd = {
       about: {
         "@id": `${SITE_URL}/#game`,
       },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/icon1.png`,
+      },
       inLanguage: "ar",
       description:
         "البعاتي لعبة جماعية مستوحاة من التراث السوداني. العب مع أصدقائك، اكتشف الأدوار السرية، واكشف البعاتي قبل فوات الأوان.",
     },
     {
-      "@type": "MobileApplication",
+      "@type": ["MobileApplication", "VideoGame"],
       "@id": `${SITE_URL}/#game`,
       name: "البعاتي",
+      url: `${SITE_URL}/`,
+      description:
+        "لعبة أدوار اجتماعية سودانية بـ 9 أدوار سرية فريدة ومحادثة صوتية مباشرة، تتسع من 5 إلى 20 لاعباً.",
       operatingSystem: "Android, iOS",
       applicationCategory: "GameApplication",
+      applicationSubCategory: "Social Deduction Game",
+      genre: ["Social Deduction", "Party Game", "Mafia"],
+      gamePlatform: ["Android", "iOS"],
+      playMode: "MultiPlayer",
+      numberOfPlayers: {
+        "@type": "QuantitativeValue",
+        minValue: 5,
+        maxValue: 20,
+      },
       inLanguage: "ar",
+      image: `${SITE_URL}/icon1.png`,
+      keywords:
+        "لعبة البعاتي, لعبة مافيا, لعبة أدوار سرية, لعبة اجتماعية سودانية, محادثة صوتية مباشرة, ألعاب جماعية أونلاين",
+      datePublished: "2026-03-17",
+      author: {
+        "@id": `${SITE_URL}/#organization`,
+      },
+      publisher: {
+        "@id": `${SITE_URL}/#organization`,
+      },
       offers: {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "5",
-        ratingCount: "1",
-      },
-      downloadUrl: GOOGLE_PLAY_URL,
+      downloadUrl: [GOOGLE_PLAY_URL, APP_STORE_URL],
+      installUrl: [GOOGLE_PLAY_URL, APP_STORE_URL],
     },
   ],
 };
@@ -850,7 +891,7 @@ function HeroSection() {
         >
           <Image
             src="/icon1.png"
-            alt="البعاتي"
+            alt="شعار لعبة البعاتي — لعبة أدوار اجتماعية سودانية"
             width={180}
             height={180}
             className="drop-shadow-[0_0_40px_rgba(199,91,57,0.4)]"
@@ -1391,7 +1432,7 @@ function RolesSection() {
     });
   };
 
-  const angleOffsets = [-15, 10, -8, 12, -5];
+  const angleOffsets = [-15, 10, -8, 12, -5, 8, -12, 6, -10];
 
   return (
     <>
@@ -1495,7 +1536,7 @@ function RolesSection() {
                 style={{ width: "180px", height: "240px" }}
                 initial={{
                   opacity: 0,
-                  rotate: angleOffsets[i],
+                  rotate: angleOffsets[i % angleOffsets.length],
                   scale: 0.6,
                 }}
                 animate={isInView ? { opacity: 1, rotate: 0, scale: 1 } : {}}
@@ -1532,7 +1573,7 @@ function RolesSection() {
                     >
                       <Image
                         src={role.image}
-                        alt={role.name}
+                        alt={`دور ${role.name} في لعبة البعاتي`}
                         width={140}
                         height={140}
                         className="object-contain drop-shadow-lg"
@@ -2034,7 +2075,7 @@ function DownloadSection() {
           >
             <Image
               src="/icon1.png"
-              alt="البعاتي"
+              alt="شعار لعبة البعاتي"
               width={120}
               height={120}
               className="drop-shadow-[0_0_30px_rgba(232,213,183,0.3)]"
@@ -2243,7 +2284,7 @@ function FooterSection() {
           <div className="mb-2">
             <Image
               src="/icon1.png"
-              alt="البعاتي"
+              alt="شعار لعبة البعاتي"
               width={80}
               height={80}
               className="opacity-80"
