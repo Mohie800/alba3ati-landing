@@ -17,7 +17,7 @@ const fadeIn = {
 const guidelines: { icon: IconName; title: string; color: string; items: string[] }[] = [
   {
     icon: "handshake",
-    title: "١. الاحترام المتبادل",
+    title: "1. الاحترام المتبادل",
     color: "var(--role-al3omda)",
     items: [
       "عامل جميع اللاعبين باحترام بغض النظر عن خلفيتهم أو مستواهم.",
@@ -28,7 +28,7 @@ const guidelines: { icon: IconName; title: string; color: string; items: string[
   },
   {
     icon: "microphone",
-    title: "٢. آداب المحادثة الصوتية",
+    title: "2. آداب المحادثة الصوتية",
     color: "var(--role-ba3ati)",
     items: [
       "تحدّث بأدب واحترام أثناء مرحلة النقاش.",
@@ -39,7 +39,7 @@ const guidelines: { icon: IconName; title: string; color: string; items: string[
   },
   {
     icon: "gamepad",
-    title: "٣. اللعب النظيف",
+    title: "3. اللعب النظيف",
     color: "var(--role-damazeen)",
     items: [
       "لا تستخدم برامج غش أو أدوات خارجية للحصول على ميزة غير عادلة.",
@@ -50,7 +50,7 @@ const guidelines: { icon: IconName; title: string; color: string; items: string[
   },
   {
     icon: "shield",
-    title: "٤. المحتوى المحظور",
+    title: "4. المحتوى المحظور",
     color: "var(--role-sitalwada3)",
     items: [
       "يُمنع منعاً باتاً أي محتوى عنصري أو طائفي أو تمييزي.",
@@ -61,7 +61,7 @@ const guidelines: { icon: IconName; title: string; color: string; items: string[
   },
   {
     icon: "lightning",
-    title: "٥. الإبلاغ عن المخالفات",
+    title: "5. الإبلاغ عن المخالفات",
     color: "var(--role-abujanzeer)",
     items: [
       "إذا واجهت سلوكاً مخالفاً، استخدم زر الإبلاغ داخل اللعبة.",
@@ -72,18 +72,18 @@ const guidelines: { icon: IconName; title: string; color: string; items: string[
   },
   {
     icon: "scales",
-    title: "٦. العقوبات",
+    title: "6. العقوبات",
     color: "var(--terracotta)",
     items: [
       "المخالفة الأولى: تحذير رسمي عبر إشعار داخل التطبيق.",
-      "المخالفة الثانية: إيقاف مؤقت لمدة ٢٤ ساعة إلى ٧ أيام.",
-      "المخالفة الثالثة: إيقاف مؤقت لمدة ٣٠ يوماً.",
+      "المخالفة الثانية: إيقاف مؤقت لمدة 24 ساعة إلى 7 أيام.",
+      "المخالفة الثالثة: إيقاف مؤقت لمدة 30 يوماً.",
       "المخالفات الجسيمة أو المتكررة: حظر دائم من اللعبة.",
     ],
   },
   {
     icon: "star",
-    title: "٧. كن جزءاً إيجابياً من المجتمع",
+    title: "7. كن جزءاً إيجابياً من المجتمع",
     color: "var(--role-al3omda)",
     items: [
       "ساعد اللاعبين الجدد في فهم قواعد اللعبة وآلياتها.",
@@ -181,7 +181,7 @@ export default function CommunityPage() {
           >
             إرشادات المجتمع
           </h1>
-          <p className="text-lg opacity-60 mb-2">آخر تحديث: فبراير ٢٠٢٦</p>
+          <p className="text-lg opacity-60 mb-2">آخر تحديث: فبراير 2026</p>
           <p className="max-w-2xl mx-auto text-base opacity-70 leading-relaxed">
             مجتمع البعاتي مبني على المتعة والاحترام. هذه الإرشادات تساعدنا جميعاً على الاستمتاع باللعبة في بيئة آمنة ومرحبة.
           </p>

@@ -120,7 +120,7 @@ export default function DeleteDataPage() {
           </h1>
           <p className="max-w-2xl mx-auto text-base opacity-70 leading-relaxed">
             يمكنك طلب حذف جميع بياناتك المرتبطة بحسابك في لعبة البعاتي.
-            سيتم معالجة طلبك خلال ٧ أيام عمل.
+            سيتم معالجة طلبك خلال 7 أيام عمل.
           </p>
         </motion.div>
       </section>
@@ -200,7 +200,7 @@ export default function DeleteDataPage() {
                 تم استلام طلبك بنجاح!
               </h2>
               <p className="opacity-70 mb-4">
-                سيتم معالجة طلب حذف بياناتك خلال ٧ أيام عمل.
+                سيتم معالجة طلب حذف بياناتك خلال 7 أيام عمل.
               </p>
               <p className="opacity-50 text-sm">
                 سنتواصل معك عبر البريد الإلكتروني (إن وُجد) عند اكتمال الحذف.

@@ -227,7 +227,7 @@ const gamePhases: {
     description:
       "يقوم أحد اللاعبين بإنشاء غرفة (خاصة بكود أو عامة) ثم ينضم باقي اللاعبين.",
     details: [
-      "الحد الأدنى ٥ لاعبين والحد الأقصى ٢٠ لاعباً",
+      "الحد الأدنى 5 لاعبين والحد الأقصى 20 لاعباً",
       "يمكن لمنشئ الغرفة تحديد عدد كل دور حسب عدد اللاعبين",
       "الغرف الخاصة تحتاج كود للانضمام، والعامة متاحة للجميع",
     ],
@@ -556,7 +556,7 @@ export default function HowToPlayPage() {
               className="text-lg leading-relaxed mb-6"
               style={{ color: "rgba(255,255,255,0.9)" }}
             >
-              البعاتي لعبة جماعية سودانية تجمع بين ٥ إلى ٢٠ لاعباً. يتم توزيع
+              البعاتي لعبة جماعية سودانية تجمع بين 5 إلى 20 لاعباً. يتم توزيع
               أدوار سرية على اللاعبين: بعضهم &quot;بعاتي&quot; (أشرار) وبعضهم
               &quot;أهالي&quot; (أبرياء) مع أدوار خاصة. اللعبة تدور بين مرحلتي
               الليل والنهار — في الليل ينفذ كل دور قدرته السرية، وفي النهار
@@ -568,11 +568,11 @@ export default function HowToPlayPage() {
             >
               <div className="flex items-center gap-2">
                 <Users size={20} color="white" />
-                <span>٥ - ٢٠ لاعب</span>
+                <span>5 - 20 لاعب</span>
               </div>
               <div className="flex items-center gap-2">
                 <Sparkles size={20} color="white" />
-                <span>٩ أدوار مختلفة</span>
+                <span>9 أدوار مختلفة</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mic size={20} color="white" />
@@ -580,7 +580,7 @@ export default function HowToPlayPage() {
               </div>
               <div className="flex items-center gap-2">
                 <Timer size={20} color="white" />
-                <span>١٠ - ٣٠ دقيقة</span>
+                <span>10 - 30 دقيقة</span>
               </div>
             </div>
           </div>
